@@ -72,7 +72,7 @@
             android:fontFamily="@font/baloo"
             android:text="@string/logo"
             android:textColor="@android:color/white"
-            android:textSize="100sp"
+            android:textSize="90sp"
             android:id="@+id/logo"/>
     </RelativeLayout>
 
