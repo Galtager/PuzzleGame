@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">PuzzleGame</string>
+    <string name="logo">Puzzle</string>
+    <string name="developers">developers - Gal , Igal , Vova</string>
 </resources>
