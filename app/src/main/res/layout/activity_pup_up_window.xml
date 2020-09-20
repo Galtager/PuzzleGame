@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PupUpWindowActivity"
+    android:orientation="vertical"
+    >
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/pupUpLayout"
+        android:layout_gravity="center"
+        >
+        <TextView
+
+            android:id="@+id/userDifficultChoose"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="30sp"
+            android:gravity="center"
+            />
+        <ImageView
+            android:id="@+id/imagePupUp"
+            android:layout_width="match_parent"
+            android:layout_height="82dp"
+            android:layout_margin="20dp"
+            />
+        <Button
+            android:id="@+id/play_button"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            android:text="PLAY"
+            android:textSize="20sp" />
+    </LinearLayout>
+</LinearLayout>
