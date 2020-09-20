@@ -2,4 +2,7 @@
     <string name="app_name">PuzzleGame</string>
     <string name="logo">Puzzle</string>
     <string name="developers">developers - Gal , Igal , Vova</string>
+    <string name="begginer">Begginer</string>
+    <string name="amature">Amature</string>
+    <string name="professional">Professional</string>
 </resources>
