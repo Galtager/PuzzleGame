@@ -95,8 +95,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/menubutton" />
+            
+            <Button
+                android:id="@+id/howToPlayBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="how to play?" />
         </LinearLayout>
     </LinearLayout>
+</LinearLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -12,8 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ChooseDifficultActivity extends AppCompatActivity {
-
-
+    
+    private Button howToPlayBtn;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,13 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         ImageButton backMenu = (ImageButton) this.findViewById(R.id.levelBackMenu);
 
         backMenu.setOnClickListener(onClickListener);
-
+         howToPlayBtn = (Button) findViewById(R.id.howToPlayBtn);
+        howToPlayBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
     }
     View.OnClickListener onClickListener = new View.OnClickListener(){
 
@@ -72,7 +78,10 @@ public class ChooseDifficultActivity extends AppCompatActivity {
     public void backMenu() {
         finish();
     }
-
+     public void openDialog(){
+        HowToPlayDialog howToPlayDialog = new HowToPlayDialog();
+        howToPlayDialog.show(getSupportFragmentManager(), "how to play");
+    }
     @Override
     public void finish() {
         super.finish();
