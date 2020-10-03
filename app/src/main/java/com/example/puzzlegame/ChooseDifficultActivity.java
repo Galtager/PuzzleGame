@@ -15,6 +15,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
 
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_difficult);
@@ -66,14 +67,15 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         gameIntent.putExtra("keylevel",level);
         gameIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(gameIntent);
-        finish();
+        overridePendingTransition(R.anim.slide_out_left,R.anim.slide_in_right);
     }
     public void backMenu() {
-        Intent intent = new Intent(ChooseDifficultActivity.this, Home.class);
-//        intent.putExtra("checkSound", sound.getCheckSound());
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
         finish();
     }
 
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+    }
 }
