@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="400dp"
+    android:orientation="vertical"
+    android:background="@drawable/levelbackground">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="20dp"
+        android:textSize="30sp"
+        android:textColor="@android:color/black"
+        android:text="how to play?"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:padding="20dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="
+    '1) First chose the size of the board.\n'
+    '2) There is no need to shuffle… we will do it for you.\n'
+    '3) You are ready. Play and injoy. Your goal is to move the puzzle parts to their place: the sequence you dicided to solve\n'
+   '\  ntip form us: if you are unhappy with the starting position, or made a mistake you can just shuffle again and start from the beginning.\n'
+    '\nAnd remember not everything is possible."/>
+
+</LinearLayout>

@@ -1,19 +1,22 @@
 package com.example.puzzlegame;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.Objects;
 
 public class ChooseDifficultActivity extends AppCompatActivity {
     
-    private Button howToPlayBtn;
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,10 +29,10 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         button1.setOnClickListener(onClickListener);
         button2.setOnClickListener(onClickListener);
         button3.setOnClickListener(onClickListener);
+        ImageButton howToPlayBtn = findViewById(R.id.howToPlayBtn);
         ImageButton backMenu = (ImageButton) this.findViewById(R.id.levelBackMenu);
 
         backMenu.setOnClickListener(onClickListener);
-         howToPlayBtn = (Button) findViewById(R.id.howToPlayBtn);
         howToPlayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -78,9 +81,10 @@ public class ChooseDifficultActivity extends AppCompatActivity {
     public void backMenu() {
         finish();
     }
-     public void openDialog(){
-        HowToPlayDialog howToPlayDialog = new HowToPlayDialog();
-        howToPlayDialog.show(getSupportFragmentManager(), "how to play");
+    public void openDialog(){
+        Dialog dialog = new Dialog(ChooseDifficultActivity.this);
+        dialog.setContentView(R.layout.dialog_info);
+        dialog.show();
     }
     @Override
     public void finish() {

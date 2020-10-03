@@ -95,15 +95,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/menubutton" />
-            
-            <Button
-                android:id="@+id/howToPlayBtn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="how to play?" />
         </LinearLayout>
     </LinearLayout>
-</LinearLayout>
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -112,6 +105,15 @@
             android:layout_width="200dp"
             android:layout_height="200dp"
             android:src="@drawable/animated_charc"
+            android:layout_alignParentBottom="true"/>
+        <ImageButton
+            android:id="@+id/howToPlayBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="how to play?"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/info"
+            android:background="@android:color/transparent"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
 </LinearLayout>
