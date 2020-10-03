@@ -10,7 +10,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,7 +23,8 @@ public class MainActivity extends AppCompatActivity {
 
     Animation topAnimation,bottomAnimation,middleAnimation;
     View line1,line2,line3,line4,line5,line6;
-    TextView logo,signture;
+    TextView signture,startLogo;
+    RelativeLayout logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
         line6 = findViewById(R.id.sixth_line);
 
         logo = findViewById(R.id.logo);
+        startLogo = findViewById(R.id.startLogo);
         signture = findViewById(R.id.signature);
 
         line1.setAnimation(topAnimation);
@@ -47,8 +54,17 @@ public class MainActivity extends AppCompatActivity {
         line6.setAnimation(topAnimation);
 
         logo.setAnimation(middleAnimation);
-        signture.setAnimation(bottomAnimation);
 
+        signture.setAnimation(bottomAnimation);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                YoYo.with(Techniques.Swing)
+                        .duration(1000)
+                        .repeat(1)
+                        .playOn(startLogo);
+            }
+        },TIME_OUT/2);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -65,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
-        overridePendingTransition(R.anim.slide_out_left,R.anim.slide_in_right);
-
+        overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
     }
 }
