@@ -149,10 +149,6 @@ public class GameActivity15 extends AppCompatActivity {
     }
 
     public void backMenu() {
-        Intent intent = new Intent(GameActivity15.this, ChooseDifficultActivity.class);
-//        intent.putExtra("checkSound", sound.getCheckSound());
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
         finish();
     }
 
@@ -209,5 +205,11 @@ public class GameActivity15 extends AppCompatActivity {
             text = "0";
         }
         return text;
+    }
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+
     }
 }

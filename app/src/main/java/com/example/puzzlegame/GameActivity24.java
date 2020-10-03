@@ -144,10 +144,6 @@ public class GameActivity24 extends Activity {
 
 
     public void backMenu() {
-        Intent intent = new Intent(GameActivity24.this, ChooseDifficultActivity.class);
-//        intent.putExtra("checkSound", sound.getCheckSound());
-        intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
         finish();
     }
 
@@ -201,5 +197,11 @@ public class GameActivity24 extends Activity {
             text = "0";
         }
         return text;
+    }
+    @Override
+    public void finish() {
+        super.finish();
+        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+
     }
 }
