@@ -1,12 +1,15 @@
 package com.example.puzzlegame;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +21,6 @@ import java.io.OutputStreamWriter;
 import android.graphics.Typeface;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 public class GameActivity9 extends AppCompatActivity {
 
     private final int N = 3;
@@ -156,13 +158,34 @@ public class GameActivity9 extends AppCompatActivity {
         if(cards.finished(N, N)){
             showGame();
 //            sound.playSound(victorySound);
-            Toast.makeText(GameActivity9.this, R.string.you_won, Toast.LENGTH_SHORT).show();
+            openDialog();
             if ((numbSteps < numbBestSteps) || (numbBestSteps == 0)) {
                 writeFile(Integer.toString(numbSteps), "fbs9");
                 tBestScore.setText(Integer.toString(numbSteps));
             }
+
             check = true;
         }
+    }
+
+    private void openDialog() {
+        final Dialog dialog = new Dialog(GameActivity9.this);
+        dialog.setContentView(R.layout.dialog_finished);
+
+
+        Button finishButton = dialog.findViewById(R.id.finishButton);
+        final EditText finishName = dialog.findViewById(R.id.finishName);
+        TextView finishSteps = dialog.findViewById(R.id.finishSteps);
+        finishSteps.setText(numbSteps + " Steps");
+        dialog.show();
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(GameActivity9.this, finishName.getText()+"", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+
+            }
+        });
     }
 
 //    public void soundOffOn() {

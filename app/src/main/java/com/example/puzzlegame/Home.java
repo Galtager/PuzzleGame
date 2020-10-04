@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
@@ -25,6 +26,10 @@ import java.util.Locale;
 
 public class Home extends AppCompatActivity {
 
+    boolean[] langFlag = {false};
+    boolean[] soundFlag = {false};
+    String[] tempLang = {""};
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +46,8 @@ public class Home extends AppCompatActivity {
         facebook.setOnClickListener(onClickListener);
         settingbutton.setOnClickListener(onClickListener);
         startButton.setOnClickListener(onClickListener);
+
+
 
 
 
@@ -79,30 +86,74 @@ public class Home extends AppCompatActivity {
         }
     };
     public void openDialog(){
-        final Dialog dialog = new Dialog(Home.this);
+        dialog = new Dialog(Home.this);
         dialog.setContentView(R.layout.dialog_setting);
         dialog.show();
         Chip hebrewChip = dialog.findViewById(R.id.hebrewChip);
         Chip englishChip = dialog.findViewById(R.id.englishChip);
+        Chip soundOnChip = dialog.findViewById(R.id.soundOnChip);
+        Chip soundOffChip = dialog.findViewById(R.id.soundOffChip);
 
-        hebrewChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setAppLocale("iw");
-                dialog.dismiss();
-                restartActivity();
-            }
-        });
-        englishChip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                setAppLocale("en");
-                dialog.dismiss();
-                restartActivity();
-            }
-        });
+        Button submitButton = dialog.findViewById(R.id.submitButton);
+
+        hebrewChip.setOnClickListener(dialogClickListener);
+        englishChip.setOnClickListener(dialogClickListener);
+        submitButton.setOnClickListener(dialogClickListener);
+        soundOffChip.setOnClickListener(dialogClickListener);
+        soundOnChip.setOnClickListener(dialogClickListener);
+
+
+//        hebrewChip.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setAppLocale("iw");
+//                dialog.dismiss();
+//                restartActivity();
+//            }
+//        });
+//        englishChip.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                setAppLocale("en");
+//                dialog.dismiss();
+//                restartActivity();
+//            }
+//        });
 
     }
+    View.OnClickListener dialogClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            switch (v.getId()){
+                case R.id.hebrewChip:
+                    langFlag[0] = true;
+                    tempLang[0] = "iw";
+                    break;
+                case R.id.englishChip:
+                    langFlag[0]=true;
+                    tempLang[0]="en";
+                    break;
+                case R.id.soundOnChip:
+                    soundFlag[0] = true;
+                    break;
+                case R.id.soundOffChip:
+                    soundFlag[0] = true;
+                    break;
+                case R.id.submitButton:
+                    if (soundFlag[0])
+                        Toast.makeText(Home.this, "Music Changes", Toast.LENGTH_SHORT).show();
+                    if(langFlag[0])
+                    {
+
+                        setAppLocale(tempLang[0]);
+                        dialog.dismiss();
+                        restartActivity();}
+
+
+            }
+        }
+    };
+
     private void setAppLocale(String localeCode){
         Resources resources = getResources();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();

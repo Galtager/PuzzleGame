@@ -37,4 +37,11 @@
     <string name="MainMenu">תפריט</string>
     <string name="about_text">אודות טקסט</string>
     <string name="notSave">לא נשמר</string>
+    <string name="hebrew">עברית</string>
+    <string name="english">אנגלית</string>
+    <string name="choose_language">בחר שפה</string>
+    <string name="sound_setting">הגדרות שמע</string>
+    <string name="sound_on">הדלק שמע</string>
+    <string name="sound_off">כבה שמע</string>
+    <string name="accept_changes">שמור שינויים</string>
 </resources>

@@ -1,12 +1,15 @@
 package com.example.puzzlegame;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -171,8 +174,8 @@ public class GameActivity15 extends AppCompatActivity {
     public void checkFinish(){
         if(cards.finished(N, N)){
             showGame();
+            openDialog();
 //            sound.playSound(victorySound);
-            Toast.makeText(GameActivity15.this, R.string.you_won, Toast.LENGTH_SHORT).show();
             if ((numbSteps < numbBestSteps) || (numbBestSteps == 0)) {
                 writeFile(Integer.toString(numbSteps), "fbs15");
                 tBestScore.setText(Integer.toString(numbSteps));
@@ -184,6 +187,25 @@ public class GameActivity15 extends AppCompatActivity {
     public void soundOffOn() {
 //        sound.setCheckSound(!sound.getCheckSound());
         showGame();
+    }
+    private void openDialog() {
+        final Dialog dialog = new Dialog(GameActivity15.this);
+        dialog.setContentView(R.layout.dialog_finished);
+
+
+        Button finishButton = dialog.findViewById(R.id.finishButton);
+        final EditText finishName = dialog.findViewById(R.id.finishName);
+        TextView finishSteps = dialog.findViewById(R.id.finishSteps);
+        finishSteps.setText(numbSteps + " Steps");
+        dialog.show();
+        finishButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(GameActivity15.this, finishName.getText()+"", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+
+            }
+        });
     }
 
     public void writeFile(String text, String FILENAME) {

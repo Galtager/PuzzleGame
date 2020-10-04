@@ -36,4 +36,11 @@
     <string name="difficulty_levels">Difficulty levels</string>
     <string name="choose">Choose</string>
     <string name="information">information</string>
+    <string name="hebrew">Hebrew</string>
+    <string name="english">English</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="sound_setting">Sound Setting</string>
+    <string name="sound_on">Sound On</string>
+    <string name="sound_off">Sound OFF</string>
+    <string name="accept_changes">Accept Changes</string>
 </resources>
