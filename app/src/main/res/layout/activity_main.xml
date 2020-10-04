@@ -63,7 +63,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="70dp"
+        android:gravity="center"
         android:id="@+id/logo"
 
         >
@@ -76,7 +76,7 @@
             android:text="@string/firstLogo"
             android:textColor="@color/secondWood"
             android:layout_alignParentStart="true"
-            android:textSize="90sp"
+            android:textSize="80sp"
             android:id="@+id/startLogo"/>
         <TextView
             android:layout_width="wrap_content"
@@ -85,7 +85,7 @@
             android:fontFamily="@font/baloo"
             android:text="@string/logo"
             android:textColor="@android:color/white"
-            android:textSize="90sp"
+            android:textSize="80sp"
             android:layout_toEndOf="@id/startLogo"
             />
     </RelativeLayout>

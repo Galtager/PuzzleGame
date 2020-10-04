@@ -9,6 +9,7 @@ import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.Window;
@@ -16,6 +17,7 @@ import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.daimajia.androidanimations.library.Techniques;
@@ -40,6 +42,8 @@ public class Home extends AppCompatActivity {
         ImageButton facebook =findViewById(R.id.facebook);
         ImageButton instagram =findViewById(R.id.instagram);
         ImageButton github =findViewById(R.id.github);
+        final ImageView doctorImageHome = this.findViewById(R.id.doctorImageHome);
+
 
         github.setOnClickListener(onClickListener);
         instagram.setOnClickListener(onClickListener);
@@ -51,10 +55,22 @@ public class Home extends AppCompatActivity {
 
 
 
+
         YoYo.with(Techniques.Shake)
                 .duration(3000)
                 .repeat(2)
                 .playOn(startButton);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doctorImageHome.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.FadeIn)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn(doctorImageHome);
+
+            }
+        },1000);
 
     }
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -101,24 +117,6 @@ public class Home extends AppCompatActivity {
         submitButton.setOnClickListener(dialogClickListener);
         soundOffChip.setOnClickListener(dialogClickListener);
         soundOnChip.setOnClickListener(dialogClickListener);
-
-
-//        hebrewChip.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                setAppLocale("iw");
-//                dialog.dismiss();
-//                restartActivity();
-//            }
-//        });
-//        englishChip.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                setAppLocale("en");
-//                dialog.dismiss();
-//                restartActivity();
-//            }
-//        });
 
     }
     View.OnClickListener dialogClickListener = new View.OnClickListener() {

@@ -4,12 +4,17 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.daimajia.androidanimations.library.Techniques;
+import com.daimajia.androidanimations.library.YoYo;
 
 
 public class ChooseDifficultActivity extends AppCompatActivity {
@@ -28,8 +33,22 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         button3.setOnClickListener(onClickListener);
         ImageButton howToPlayBtn = findViewById(R.id.howToPlayBtn);
         ImageButton backMenu = (ImageButton) this.findViewById(R.id.levelBackMenu);
+        final ImageView doctorImage = this.findViewById(R.id.doctorImage);
 
         backMenu.setOnClickListener(onClickListener);
+
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                doctorImage.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.FadeIn)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn(doctorImage);
+
+            }
+        },1000);
         howToPlayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,9 +98,16 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         finish();
     }
     public void openDialog(){
-        Dialog dialog = new Dialog(ChooseDifficultActivity.this);
+        final Dialog dialog = new Dialog(ChooseDifficultActivity.this);
         dialog.setContentView(R.layout.dialog_info);
+        Button gotItButton = dialog.findViewById(R.id.gotItButton);
         dialog.show();
+        gotItButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
     }
     @Override
     public void finish() {

@@ -49,11 +49,26 @@
                 android:text="@string/setting" />
         </LinearLayout>
         <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="200dp"
+            android:visibility="invisible"
+            android:layout_height="200dp"
+            android:id="@+id/doctorImageHome"
+            android:src="@drawable/animated_charc"
+            android:paddingBottom="20dp"
+            android:layout_alignParentBottom="true"/>
+    </LinearLayout>
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_alignParentBottom="true"
             android:layout_alignBottom="@id/second"
+        android:id="@+id/last"
             android:paddingBottom="10dp">
             <ImageButton
                 android:layout_width="wrap_content"

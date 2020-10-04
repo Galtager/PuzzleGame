@@ -26,7 +26,7 @@
 
     <dimen name="textScore24">34sp</dimen>
     <dimen name="textBestScore24">26sp</dimen>
-    <dimen name="buttonSize24">65dp</dimen>
+    <dimen name="buttonSize24">60dp</dimen>
 
     <dimen name="textScore9">36sp</dimen>
     <dimen name="textBestScore9">30sp</dimen>
