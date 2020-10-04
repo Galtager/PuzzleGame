@@ -17,12 +17,13 @@
             android:id="@+id/bBackMenu"
             android:background="@drawable/back"
             style="@style/bSettingStyle"
+            android:layout_alignParentLeft="true"
             android:contentDescription="@string/button"/>
         <ImageButton
             android:id="@+id/bSoundOffOn"
             android:background="@drawable/soundoff"
             style="@style/bSettingStyle"
-            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
             android:contentDescription="@string/button"/>
         <ImageButton
             android:id="@+id/bNewGame"

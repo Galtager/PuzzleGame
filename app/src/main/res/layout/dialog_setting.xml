@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".Home"
+    android:focusable="true"
+    android:focusableInTouchMode="true">
+    <com.google.android.material.chip.ChipGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/languageChipGroup"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        app:singleSelection="true">
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hebrew"
+            android:id="@+id/hebrewChip"
+            app:chipIcon="@drawable/israel"
+            />
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Action"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="English"
+            android:id="@+id/englishChip"
+            app:chipIcon="@drawable/us"/>
+
+    </com.google.android.material.chip.ChipGroup>
+
+</LinearLayout>
+

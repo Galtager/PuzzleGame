@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PuzzleGame</string>
+    <string name="logo">אזל</string>
+    <string name="developers">מפתחים - גל ,יגאל ,וובה</string>
+    <string name="begginer">רמה קלה</string>
+    <string name="amature">רמה בינונית</string>
+    <string name="professional">רמה קשה!</string>
+    <string name="game">15 פאזל</string>
+    <string name="game8">8 פאזל</string>
+    <string name="game15">15 פאזל</string>
+    <string name="game24">24 פאזל</string>
+    <string name="newGame">משחק חדש</string>
+    <string name="continueGame">המשך</string>
+    <string name="Help">עזרה</string>
+    <string name="exitGame">יציאה</string>
+    <string name="Score">ניקוד</string>
+    <string name="bestScore">שיא</string>
+    <string name="you_won">ניצחת את המשחק , נסה את הפאזל היותר מתקדם</string>
+    <string name="about_title">אודות:</string>
+    <string name="button">כפתור</string>
+    <string name="buttonSound">כפתור שמע</string>
+    <string name="level15">רמה 15</string>
+    <string name="level24">רמה 24</string>
+    <string name="action_settings">הגדרות</string>
+    <string name="firstLogo">פ</string>
+    <string name="full_logo">משחק פאזל</string>
+    <string name="play">התחל משחק</string>
+    <string name="leader_board">טבלת מובילים</string>
+    <string name="setting">הגדרות</string>
+    <string name="board_24">לוח 24</string>
+    <string name="board_15">לוח 15</string>
+    <string name="board_8">לוח 8</string>
+    <string name="difficulty_levels">רמת משחק</string>
+    <string name="choose">בחר</string>
+    <string name="information">מידע</string>
+    <string name="MainMenu">תפריט</string>
+    <string name="about_text">אודות טקסט</string>
+    <string name="notSave">לא נשמר</string>
+</resources>

@@ -9,11 +9,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Objects;
 
 public class ChooseDifficultActivity extends AppCompatActivity {
     
