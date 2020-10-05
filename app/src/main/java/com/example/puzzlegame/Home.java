@@ -36,7 +36,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
+        Button highscoreButton = findViewById(R.id.highscore_button);
         Button startButton = findViewById(R.id.start_button);
         Button settingbutton = findViewById(R.id.setting_button);
         ImageButton facebook =findViewById(R.id.facebook);
@@ -52,7 +52,15 @@ public class Home extends AppCompatActivity {
         startButton.setOnClickListener(onClickListener);
 
 
-
+highscoreButton.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent HighScoreIntent = new Intent(Home.this,ViewPager.class);
+/*                String value="1";
+                HighScoreIntent.putExtra("board",value);*/
+        startActivity(HighScoreIntent);
+    }
+});
 
 
 

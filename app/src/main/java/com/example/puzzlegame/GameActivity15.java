@@ -175,7 +175,7 @@ public class GameActivity15 extends AppCompatActivity {
 
     public void checkFinish(){
         /*if(cards.finished(N, N)){*/
-        if(cards.finished(N, N)){
+        if(true){
             showGame();
             openDialog();
 //            sound.playSound(victorySound);
@@ -211,7 +211,13 @@ public class GameActivity15 extends AppCompatActivity {
                 editor.putInt("lastScore",numbSteps);
                 editor.putString("playerName",finishName.getText().toString());
                 editor.apply();
-                Intent HighScoreIntent = new Intent(GameActivity15.this,ViewPager.class);
+                Intent HighScoreIntent = new Intent(GameActivity15.this,LeaderBoard.class);
+                SharedPreferences preferences1=getSharedPreferences("BOARD",0);
+                SharedPreferences.Editor editor1=preferences1.edit();
+                editor1.putInt("board",2);
+                editor1.apply();
+
+
                 startActivity(HighScoreIntent);
                 dialog.dismiss();
 

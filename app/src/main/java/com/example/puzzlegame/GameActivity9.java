@@ -157,7 +157,8 @@ public class GameActivity9 extends AppCompatActivity {
     }
 
     public void checkFinish(){
-        if(cards.finished(N, N)){
+        /*cards.finished(N, N)*/
+        if(true){
             showGame();
 //            sound.playSound(victorySound);
             openDialog();
@@ -184,12 +185,21 @@ public class GameActivity9 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(GameActivity9.this, finishName.getText()+"", Toast.LENGTH_SHORT).show();
+
                 preferences = getSharedPreferences("PRES",0);
                 editor=preferences.edit();
                 editor.putInt("lastScore",numbSteps);
                 editor.putString("playerName",finishName.getText().toString());
+                SharedPreferences preferences1=getSharedPreferences("BOARD",0);
+                SharedPreferences.Editor editor1=preferences1.edit();
+                editor1.putInt("board",1);
+                editor1.apply();
+
                 editor.apply();
-                Intent HighScoreIntent = new Intent(GameActivity9.this,ViewPager.class);
+
+                Intent HighScoreIntent = new Intent(GameActivity9.this,LeaderBoard.class);
+/*                String value="1";
+                HighScoreIntent.putExtra("board",value);*/
                 startActivity(HighScoreIntent);
                 dialog.dismiss();
 

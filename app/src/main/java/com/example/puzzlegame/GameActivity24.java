@@ -167,7 +167,7 @@ public class GameActivity24 extends Activity {
 
     public void checkFinish(){
        /* cards.finished(N, N)*/
-        if(cards.finished(N, N)){
+        if(true){
             showGame();
             openDialog();
 //            sound.playSound(victorySound);
@@ -202,7 +202,13 @@ public class GameActivity24 extends Activity {
                 editor.putInt("lastScore",numbSteps);
                 editor.putString("playerName",finishName.getText().toString());
                 editor.apply();
-                Intent HighScoreIntent = new Intent(GameActivity24.this,ViewPager.class);
+                Intent HighScoreIntent = new Intent(GameActivity24.this,LeaderBoard.class);
+                SharedPreferences preferences1=getSharedPreferences("BOARD",0);
+                SharedPreferences.Editor editor1=preferences1.edit();
+                editor1.putInt("board",3);
+                editor1.apply();
+
+
                 startActivity(HighScoreIntent);
                 dialog.dismiss();
 
