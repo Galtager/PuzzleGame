@@ -9,8 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GameActivity24"></activity>
-        <activity android:name=".GameActivity15"></activity>
+        <activity android:name=".ViewPager"></activity>
+        <activity android:name=".GameActivity24" />
+        <activity android:name=".GameActivity15" />
         <activity android:name=".GameActivity9" />
         <activity android:name=".ChooseDifficultActivity" />
         <activity android:name=".Home" />

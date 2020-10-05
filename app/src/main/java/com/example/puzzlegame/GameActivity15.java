@@ -2,6 +2,7 @@ package com.example.puzzlegame;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -23,7 +24,8 @@ import android.graphics.Typeface;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameActivity15 extends AppCompatActivity {
-
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
     private final int N = 4;
     Cards cards;
     private ImageButton[][] button;
@@ -172,6 +174,7 @@ public class GameActivity15 extends AppCompatActivity {
     }
 
     public void checkFinish(){
+        /*if(cards.finished(N, N)){*/
         if(cards.finished(N, N)){
             showGame();
             openDialog();
@@ -202,6 +205,14 @@ public class GameActivity15 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(GameActivity15.this, finishName.getText()+"", Toast.LENGTH_SHORT).show();
+                preferences = getSharedPreferences("PRES1",0);
+
+                editor=preferences.edit();
+                editor.putInt("lastScore",numbSteps);
+                editor.putString("playerName",finishName.getText().toString());
+                editor.apply();
+                Intent HighScoreIntent = new Intent(GameActivity15.this,ViewPager.class);
+                startActivity(HighScoreIntent);
                 dialog.dismiss();
 
             }
