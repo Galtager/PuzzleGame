@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="400dp"
     android:orientation="vertical"
-    android:background="@drawable/background">
+    android:background="@drawable/gamebackground">
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,7 +12,7 @@
         android:layout_marginTop="20dp"
         android:textSize="30sp"
         android:textColor="@android:color/black"
-        android:text="Congratulations \n You won the game in"/>
+        android:text="@string/finished_dialog_text"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,12 +20,12 @@
         android:textSize="30sp"
         android:id="@+id/finishSteps"
         android:textColor="@android:color/black"
-        android:text=" x Steps"/>
+        android:text="@string/finished_steps"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="70dp"
-        android:text="Please Enter Your Name"
+        android:text="@string/finished_name"
         android:textColor="@android:color/black"
         android:layout_gravity="center"
         android:textSize="30sp"/>
@@ -33,14 +33,16 @@
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:hint="Enter you Name"
-        android:id="@+id/finishName"/>
+        android:hint="@string/finished_edittext"
+        android:id="@+id/finishName"
+        android:autofillHints="Guest"
+        android:inputType="textPersonName" />
     <Button
         android:layout_width="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_height="wrap_content"
         android:background="@drawable/menubutton"
-        android:text="Submit"
+        android:text="@string/finished_button"
         android:id="@+id/finishButton"
         android:layout_gravity="center"/>
 

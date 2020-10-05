@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
     android:layout_height="550dp"
     android:orientation="vertical"
-    android:background="@drawable/levelbackground">
+    android:background="@drawable/background">
 
 
 
@@ -15,7 +15,7 @@
         android:textSize="30sp"
         android:textColor="@android:color/black"
         android:fontFamily="@font/baloo"
-        android:text="@string/how_to_play"/>
+        android:text="@string/info_title"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:padding="10dp"
         android:textSize="15sp"
         android:textColor="@android:color/black"
-        android:text="@string/it_s_very_simple_to_start_but_hard_to_finish"/>
+        android:text="@string/info_text_init"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -33,7 +33,7 @@
         android:textSize="18sp"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
-        android:text="@string/_1_first_chose_the_size_of_the_board_n2_there_is_no_need_to_shuffle_we_will_do_it_nfor_you_n3_you_are_ready_play_and_injoy_your_goal_is_to_move_the_puzzle_parts_to_their_place_the_sequence_you_dicided_to_solve_n_nalso_take_a_tip_form_us_if_you_are_unhappy_with_the_starting_position_or_made_a_mistake_you_can_just_shuffle_again_and_start_from_the_beginning_n_nand_remember_not_everything_is_possible"/>
+        android:text="@string/info_text"/>
 
     <Button
         android:id="@+id/gotItButton"
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="10dp"
-        android:text="@string/i_got_it"
+        android:text="@string/info_dialog_button"
         android:background="@drawable/menubutton" />
 
 </LinearLayout>

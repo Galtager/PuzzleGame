@@ -7,7 +7,7 @@
     android:layout_height="300dp"
     android:orientation="vertical"
     android:padding="8dp"
-    android:background="@drawable/levelbackground"
+    android:background="@drawable/background"
     tools:context=".Home"
     android:focusable="true"
     android:focusableInTouchMode="true">

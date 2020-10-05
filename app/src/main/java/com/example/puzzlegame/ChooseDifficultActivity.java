@@ -1,18 +1,14 @@
 package com.example.puzzlegame;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 
@@ -25,18 +21,26 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_difficult);
 
-        Button button1 = findViewById(R.id.btn1);
-        Button button2 = findViewById(R.id.btn2);
-        Button button3 = findViewById(R.id.btn3);
-        button1.setOnClickListener(onClickListener);
-        button2.setOnClickListener(onClickListener);
-        button3.setOnClickListener(onClickListener);
-        ImageButton howToPlayBtn = findViewById(R.id.howToPlayBtn);
-        ImageButton backMenu = (ImageButton) this.findViewById(R.id.levelBackMenu);
-        final ImageView doctorImage = this.findViewById(R.id.doctorImage);
+        Button game9Btn = findViewById(R.id.btn1);
+        Button game15Btn = findViewById(R.id.btn2);
+        Button game24Btn = findViewById(R.id.btn3);
 
-        backMenu.setOnClickListener(onClickListener);
+        ImageButton infoBtn = findViewById(R.id.howToPlayBtn);
+        ImageButton backBtn = findViewById(R.id.levelBackMenu);
+        final ImageView doctorImage = findViewById(R.id.doctorImage);
 
+        game9Btn.setOnClickListener(onClickListener);
+        game15Btn.setOnClickListener(onClickListener);
+        game24Btn.setOnClickListener(onClickListener);
+
+        backBtn.setOnClickListener(onClickListener);
+
+        infoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDialog();
+            }
+        });
 
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -49,12 +53,6 @@ public class ChooseDifficultActivity extends AppCompatActivity {
 
             }
         },1000);
-        howToPlayBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialog();
-            }
-        });
     }
     View.OnClickListener onClickListener = new View.OnClickListener(){
 
@@ -71,41 +69,41 @@ public class ChooseDifficultActivity extends AppCompatActivity {
                     newGame(5);
                     break;
                 case R.id.levelBackMenu:
-                    backMenu();
+                    back();
             }
         }
     };
     private void newGame(int level) {
-        Intent gameIntent = new Intent();
+        Intent gameChooserIntent = new Intent();
         switch (level){
             case 3:
-                gameIntent = new Intent(ChooseDifficultActivity.this, GameActivity9.class);
+                gameChooserIntent = new Intent(ChooseDifficultActivity.this, GameActivity9.class);
                 break;
             case 4:
-                gameIntent = new Intent(ChooseDifficultActivity.this, GameActivity15.class);
+                gameChooserIntent = new Intent(ChooseDifficultActivity.this, GameActivity15.class);
                 break;
             case 5:
-                gameIntent = new Intent(ChooseDifficultActivity.this, GameActivity24.class);
+                gameChooserIntent = new Intent(ChooseDifficultActivity.this, GameActivity24.class);
 
                 break;
         }
-        gameIntent.putExtra("keylevel",level);
-        gameIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(gameIntent);
+        startActivity(gameChooserIntent);
         overridePendingTransition(R.anim.slide_out_left,R.anim.slide_in_right);
     }
-    public void backMenu() {
+    public void back() {
+
         finish();
     }
+
     public void openDialog(){
-        final Dialog dialog = new Dialog(ChooseDifficultActivity.this);
-        dialog.setContentView(R.layout.dialog_info);
-        Button gotItButton = dialog.findViewById(R.id.gotItButton);
-        dialog.show();
-        gotItButton.setOnClickListener(new View.OnClickListener() {
+        final Dialog infoDialog = new Dialog(ChooseDifficultActivity.this);
+        infoDialog.setContentView(R.layout.dialog_info);
+        Button okBtn = infoDialog.findViewById(R.id.gotItButton);
+        infoDialog.show();
+        okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dialog.dismiss();
+                infoDialog.dismiss();
             }
         });
     }

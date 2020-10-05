@@ -3,17 +3,9 @@
     <string name="app_name">PuzzleGame</string>
     <string name="logo">אזל</string>
     <string name="developers">מפתחים - גל ,יגאל ,וובה</string>
-    <string name="begginer">רמה קלה</string>
-    <string name="amature">רמה בינונית</string>
-    <string name="professional">רמה קשה!</string>
-    <string name="game">15 פאזל</string>
     <string name="game8">8 פאזל</string>
     <string name="game15">15 פאזל</string>
     <string name="game24">24 פאזל</string>
-    <string name="newGame">משחק חדש</string>
-    <string name="continueGame">המשך</string>
-    <string name="Help">עזרה</string>
-    <string name="exitGame">יציאה</string>
     <string name="Score">ניקוד</string>
     <string name="bestScore">שיא</string>
     <string name="you_won">ניצחת את המשחק , נסה את הפאזל היותר מתקדם</string>
@@ -34,7 +26,6 @@
     <string name="difficulty_levels">רמת משחק</string>
     <string name="choose">בחר</string>
     <string name="information">מידע</string>
-    <string name="MainMenu">תפריט</string>
     <string name="about_text">אודות טקסט</string>
     <string name="notSave">לא נשמר</string>
     <string name="hebrew">עברית</string>
@@ -44,8 +35,15 @@
     <string name="sound_on">הדלק שמע</string>
     <string name="sound_off">כבה שמע</string>
     <string name="accept_changes">שמור שינויים</string>
-    <string name="i_got_it">I got it</string>
-    <string name="how_to_play">how to play?</string>
-    <string name="it_s_very_simple_to_start_but_hard_to_finish">It\'s very simple to start but hard to finish</string>
-    <string name="_1_first_chose_the_size_of_the_board_n2_there_is_no_need_to_shuffle_we_will_do_it_nfor_you_n3_you_are_ready_play_and_injoy_your_goal_is_to_move_the_puzzle_parts_to_their_place_the_sequence_you_dicided_to_solve_n_nalso_take_a_tip_form_us_if_you_are_unhappy_with_the_starting_position_or_made_a_mistake_you_can_just_shuffle_again_and_start_from_the_beginning_n_nand_remember_not_everything_is_possible">1) First chose the size of the board.\n2) There is no need to shuffle… we will do it\nfor you.\n3) You are ready. Play and injoy. Your goal is to move the puzzle parts to their place: the sequence you dicided to solve.\n \nAlso, take a tip form us: if you are unhappy with the starting position, or made a mistake you can just shuffle again and start from the beginning.\n \nAnd remember not everything is possible.</string>
+    <string name="info_dialog_button">הבנתי</string>
+    <string name="info_title">איך לשחק?</string>
+    <string name="info_text_init">בהתחלה זה ייראה פשוט, אך יוכח לך אחרת</string>
+    <string name="info_text">1) First chose the size of the board.\n2) There is no need to shuffle… we will do it\nfor you.\n3) You are ready. Play and injoy. Your goal is to move the puzzle parts to their place: the sequence you dicided to solve.\n \nAlso, take a tip form us: if you are unhappy with the starting position, or made a mistake you can just shuffle again and start from the beginning.\n \nAnd remember not everything is possible.</string>
+    <string name="finished_dialog_text">ברכותיי, ניצחת את השחק ב </string>
+    <string name="finished_steps">צעדים</string>
+    <string name="finished_name">הכנס את שמך</string>
+    <string name="finished_edittext">שם</string>
+    <string name="finished_button">אשר</string>
+    <string name="you_won_toast">ניצחת את הלוח, חזור ונסה את השלב הבא</string>
+    <string name="you_won_24">ניצחת את השלב האחרון, בקרוב ייפתחו שלבים חדשים</string>
 </resources>

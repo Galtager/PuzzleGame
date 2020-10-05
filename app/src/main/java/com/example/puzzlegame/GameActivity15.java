@@ -1,14 +1,8 @@
 package com.example.puzzlegame;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.content.Intent;
-import android.content.res.AssetManager;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -24,8 +18,7 @@ import android.graphics.Typeface;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class GameActivity15 extends AppCompatActivity {
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+
     private final int N = 4;
     Cards cards;
     private ImageButton[][] button;
@@ -38,24 +31,23 @@ public class GameActivity15 extends AppCompatActivity {
             R.drawable.card1508, R.drawable.card1509, R.drawable.card1510, R.drawable.card1511,
             R.drawable.card1512, R.drawable.card1513, R.drawable.card1514, R.drawable.card1515};
 
-    private TextView tScore;
-    private int numbSteps;
-    private TextView tBestScore;
-    private int numbBestSteps;
+    private TextView scoreTV;
+    private int numOfSteps;
+    private TextView recordTV;
+    private int recordSteps;
 
 //    private Sound setOnClickListenerund;
     private int clickSound;
     private int victorySound;
     private int setButtonSound;
-    private ImageButton ibSound;;
+
+    private ImageButton soundBtn;;
 
     private boolean check;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game15);
 
         button = new ImageButton[N][N];
@@ -64,27 +56,33 @@ public class GameActivity15 extends AppCompatActivity {
                 button[i][j] = (ImageButton) this.findViewById(BUTTON_ID[i][j]);
                 button[i][j].setOnClickListener(onClickListener);
             }
-        ImageButton bNewGame = (ImageButton) this.findViewById(R.id.bNewGame);
-        bNewGame.setOnClickListener(onClickListener);
-        ImageButton bBackMenu = (ImageButton) this.findViewById(R.id.bBackMenu);
-        bBackMenu.setOnClickListener(onClickListener);
-//        ImageButton bAbout = (ImageButton) this.findViewById(R.id.bAboutGame);
-//        bAbout.setOnClickListener(onClickListener);
-        ibSound = (ImageButton) this.findViewById(R.id.bSoundOffOn);
-        ibSound.setOnClickListener(onClickListener);
-
-
         Typeface digitalFont = Typeface.createFromAsset(this.getAssets(), "font.ttf");
-        TextView tPyatnashki = (TextView) this.findViewById(R.id.tPyatnashki);
-        tPyatnashki.setTypeface(digitalFont);
-        TextView tSScore = (TextView) this.findViewById(R.id.tSScore);
-        tSScore.setTypeface(digitalFont);
-        tScore = (TextView) this.findViewById(R.id.tScore);
-        tScore.setTypeface(digitalFont);
-        TextView tBestSScore = (TextView) this.findViewById(R.id.tBestSScore);
-        tBestSScore.setTypeface(digitalFont);
-        tBestScore = (TextView) this.findViewById(R.id.tBestScore);
-        tBestScore.setTypeface(digitalFont);
+
+
+        ImageButton bNewGame =findViewById(R.id.bNewGame15);
+        ImageButton bBackMenu =findViewById(R.id.bBackMenu15);
+        soundBtn =findViewById(R.id.bSoundOffOn15);
+
+
+        TextView titleTV = findViewById(R.id.gameTitle15);
+        TextView textScoreTV =findViewById(R.id.tSScore15);
+        scoreTV = findViewById(R.id.tScore15);
+        TextView textRecordTV =findViewById(R.id.textBestScore15);
+        recordTV =findViewById(R.id.tBestScore15);
+
+        titleTV.setTypeface(digitalFont);
+        textScoreTV.setTypeface(digitalFont);
+        scoreTV.setTypeface(digitalFont);
+        textRecordTV.setTypeface(digitalFont);
+        recordTV.setTypeface(digitalFont);
+
+
+        bNewGame.setOnClickListener(navigateBtnsClickListener);
+        bBackMenu.setOnClickListener(navigateBtnsClickListener);
+        soundBtn.setOnClickListener(navigateBtnsClickListener);
+
+
+
 
 //        AssetManager AM = getAssets();
 //        sound = new Sound(AM);
@@ -101,30 +99,19 @@ public class GameActivity15 extends AppCompatActivity {
         cards = new Cards(N, N);
         newGame();
     }
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
+    View.OnClickListener navigateBtnsClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(!check)
-                for(int i = 0; i < N; i++)
-                    for(int j = 0; j < N; j++)
-                        if(v.getId() == BUTTON_ID[i][j])
-                            buttonFunction(i, j);
-
             switch(v.getId()) {
-                case R.id.bNewGame:
+                case R.id.bNewGame24:
 //                    sound.playSound(setButtonSound);
                     newGame();
                     break;
-                case R.id.bBackMenu:
+                case R.id.bBackMenu24:
 //                    sound.playSound(setButtonSound);
                     backMenu();
                     break;
-//                case R.id.bAboutGame:
-//                    sound.playSound(setButtonSound);
-//                    aboutOnClick();
-//                    break;
-//                case R.id.bSoundOffOn:
+//                case R.id.bSoundOffOn24:
 //                    soundOffOn();
 //                    sound.playSound(setButtonSound);
 //                    break;
@@ -133,12 +120,27 @@ public class GameActivity15 extends AppCompatActivity {
             }
         }
     };
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(!check) {
+                for (int i = 0; i < N; i++)
+                    for (int j = 0; j < N; j++)
+                        if (v.getId() == BUTTON_ID[i][j])
+                            buttonFunction(i, j);
+            }
+            else
+                Toast.makeText(GameActivity15.this, R.string.you_won_toast, Toast.LENGTH_SHORT).show();
 
-    public void buttonFunction(int row, int columb) {
-        cards.moveCards(row, columb);
+
+        }
+    };
+
+    public void buttonFunction(int row, int column) {
+        cards.moveCards(row, column);
         if(cards.resultMove()) {
 //            sound.playSound(clickSound);
-            numbSteps++;
+            numOfSteps++;
             showGame();
             checkFinish();
         }
@@ -146,9 +148,9 @@ public class GameActivity15 extends AppCompatActivity {
 
     public void newGame() {
         cards.getNewCards();
-        numbSteps = 0;
-        numbBestSteps = Integer.parseInt(readFile("fbs15"));
-        tBestScore.setText(Integer.toString(numbBestSteps));
+        numOfSteps = 0;
+        recordSteps = Integer.parseInt(readFile("fbs15"));
+        recordTV.setText(Integer.toString(recordSteps));
         showGame();
         check = false;
     }
@@ -162,7 +164,7 @@ public class GameActivity15 extends AppCompatActivity {
 //    }
 
     public void showGame() {
-        tScore.setText(Integer.toString(numbSteps));
+        scoreTV.setText(Integer.toString(numOfSteps));
 
         for(int i = 0; i < N; i++)
             for(int j = 0; j < N; j++)
@@ -174,14 +176,13 @@ public class GameActivity15 extends AppCompatActivity {
     }
 
     public void checkFinish(){
-        /*if(cards.finished(N, N)){*/
-        if(true){
+        if(cards.finished(N, N)){
             showGame();
             openDialog();
 //            sound.playSound(victorySound);
-            if ((numbSteps < numbBestSteps) || (numbBestSteps == 0)) {
-                writeFile(Integer.toString(numbSteps), "fbs15");
-                tBestScore.setText(Integer.toString(numbSteps));
+            if ((numOfSteps < recordSteps) || (recordSteps == 0)) {
+                writeFile(Integer.toString(numOfSteps), "fbs15");
+                recordTV.setText(Integer.toString(numOfSteps));
             }
             check = true;
         }
@@ -199,26 +200,12 @@ public class GameActivity15 extends AppCompatActivity {
         Button finishButton = dialog.findViewById(R.id.finishButton);
         final EditText finishName = dialog.findViewById(R.id.finishName);
         TextView finishSteps = dialog.findViewById(R.id.finishSteps);
-        finishSteps.setText(numbSteps + " Steps");
+        finishSteps.setText(numOfSteps + " Steps");
         dialog.show();
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(GameActivity15.this, finishName.getText()+"", Toast.LENGTH_SHORT).show();
-                preferences = getSharedPreferences("PRES1",0);
-
-                editor=preferences.edit();
-                editor.putInt("lastScore",numbSteps);
-                editor.putString("playerName",finishName.getText().toString());
-                editor.apply();
-                Intent HighScoreIntent = new Intent(GameActivity15.this,LeaderBoard.class);
-                SharedPreferences preferences1=getSharedPreferences("BOARD",0);
-                SharedPreferences.Editor editor1=preferences1.edit();
-                editor1.putInt("board",2);
-                editor1.apply();
-
-
-                startActivity(HighScoreIntent);
                 dialog.dismiss();
 
             }

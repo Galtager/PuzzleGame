@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/gamebackground"
+    tools:ignore="RtlHardcoded" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,21 +16,23 @@
         android:layout_alignParentEnd="true">
 
         <ImageButton
-            android:id="@+id/bBackMenu"
+            android:id="@+id/bBackMenu9"
             android:background="@drawable/back"
-            style="@style/bSettingStyle"
+            style="@style/bNavigationStyle"
             android:layout_alignParentLeft="true"
-            android:contentDescription="@string/button"/>
+            android:contentDescription="@string/button"
+            />
         <ImageButton
-            android:id="@+id/bSoundOffOn"
+            android:id="@+id/bSoundOffOn9"
             android:background="@drawable/soundoff"
-            style="@style/bSettingStyle"
+            style="@style/bNavigationStyle"
             android:layout_alignParentRight="true"
-            android:contentDescription="@string/button"/>
+            android:contentDescription="@string/button"
+            />
         <ImageButton
-            android:id="@+id/bNewGame"
+            android:id="@+id/bNewGame9"
             android:background="@drawable/restart"
-            style="@style/bSettingStyle"
+            style="@style/bNavigationStyle"
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/button"/>
     </RelativeLayout>
@@ -41,7 +45,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/gameTitle8"
+            android:id="@+id/gameTitle9"
             android:text="@string/game8"
             style="@style/textPuzzleStyle"/>
 
@@ -53,14 +57,14 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/tSScore"
+                android:id="@+id/tSScore9"
                 android:text="@string/Score"
                 android:textSize="@dimen/textScore9"
-                style="@style/textGameStyle9"/>
+                style="@style/textGameStyle"/>
             <TextView
-                android:id="@+id/tScore"
+                android:id="@+id/tScore9"
                 android:textSize="@dimen/textScore9"
-                style="@style/textGameStyle9"/>
+                style="@style/textGameStyle"/>
         </LinearLayout>
 
         <LinearLayout
@@ -71,14 +75,14 @@
             android:layout_marginBottom="10dp" >
 
             <TextView
-                android:id="@+id/tBestSScore"
+                android:id="@+id/tBestSScore9"
                 android:text="@string/bestScore"
-                android:textSize="@dimen/textBestScore9"
-                style="@style/textGameStyle15" />
+                android:textSize="@dimen/textRecord9"
+                style="@style/textGameStyle" />
             <TextView
-                android:id="@+id/tBestScore"
-                android:textSize="@dimen/textBestScore9"
-                style="@style/textGameStyle15" />
+                android:id="@+id/tBestScore9"
+                android:textSize="@dimen/textRecord9"
+                style="@style/textGameStyle" />
         </LinearLayout>
 
         <GridLayout

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/levelbackground">
+    android:background="@drawable/background">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,8 +18,9 @@
             android:id="@+id/levelBackMenu"
             android:background="@drawable/back"
             android:layout_alignParentLeft="true"
-            style="@style/bSettingStyle"
-            android:contentDescription="@string/button"/>
+            style="@style/bNavigationStyle"
+            android:contentDescription="@string/button"
+            tools:ignore="RtlHardcoded" />
     </RelativeLayout>
 
     <LinearLayout
@@ -89,7 +91,7 @@
             <Button
                 android:id="@+id/btn3"
                 android:text="@string/board_24"
-                android:textColor="@color/fontofbuttons"
+                android:textColor="@color/fontOfButtons"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/menubutton" />

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background">
+    android:background="@drawable/gamebackground"
+    tools:ignore="RtlHardcoded" >
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,21 +16,22 @@
         android:layout_alignParentEnd="true">
 
         <ImageButton
-            android:id="@+id/bBackMenu"
+            android:id="@+id/bBackMenu24"
             android:background="@drawable/back"
-            style="@style/bSettingStyle"
+            style="@style/bNavigationStyle"
             android:layout_alignParentLeft="true"
-            android:contentDescription="@string/button"/>
+            android:contentDescription="@string/button"
+            />
         <ImageButton
-            android:id="@+id/bSoundOffOn"
+            android:id="@+id/bSoundOffOn24"
             android:background="@drawable/soundoff"
-            style="@style/bSettingStyle"
+            style="@style/bNavigationStyle"
             android:layout_alignParentRight="true"
             android:contentDescription="@string/button"/>
         <ImageButton
-            android:id="@+id/bNewGame"
+            android:id="@+id/bNewGame24"
             android:background="@drawable/restart"
-            style="@style/bSettingStyle"
+            style="@style/bNavigationStyle"
             android:layout_centerHorizontal="true"
             android:contentDescription="@string/button"/>
     </RelativeLayout>
@@ -41,9 +44,9 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tPyatnashki"
-            android:text="@string/game24"
-            style="@style/textPuzzleStyle"/>
+            android:id="@+id/gameTitle24"
+            style="@style/textPuzzleStyle"
+            android:text="@string/game24" />
 
         <LinearLayout
             android:orientation="horizontal"
@@ -53,15 +56,15 @@
             android:layout_marginBottom="10dp">
 
             <TextView
-                android:id="@+id/tSScore"
+                android:id="@+id/tSScore24"
                 android:text="@string/Score"
                 android:textSize="@dimen/textScore24"
-                style="@style/textGameStyle24"/>
+                style="@style/textGameStyle"/>
 
             <TextView
-                android:id="@+id/tScore"
+                android:id="@+id/tScore24"
                 android:textSize="@dimen/textScore24"
-                style="@style/textGameStyle24"/>
+                style="@style/textGameStyle"/>
         </LinearLayout>
 
         <LinearLayout
@@ -72,15 +75,15 @@
             android:layout_marginBottom="20dp">
 
             <TextView
-                android:id="@+id/tBestSScore"
+                android:id="@+id/tBestSScore24"
                 android:text="@string/bestScore"
-                android:textSize="@dimen/textBestScore24"
-                style="@style/textGameStyle24"/>
+                android:textSize="@dimen/textRecord24"
+                style="@style/textGameStyle"/>
 
             <TextView
-                android:id="@+id/tBestScore"
-                android:textSize="@dimen/textBestScore24"
-                style="@style/textGameStyle24"/>
+                android:id="@+id/tBestScore24"
+                android:textSize="@dimen/textRecord24"
+                style="@style/textGameStyle"/>
         </LinearLayout>
 
         <GridLayout

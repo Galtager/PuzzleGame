@@ -1,12 +1,8 @@
 package com.example.puzzlegame;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.content.Intent;
-import android.content.res.AssetManager;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,8 +19,7 @@ import java.io.OutputStreamWriter;
 import android.graphics.Typeface;
 
 public class GameActivity24 extends Activity {
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
+
     private final int N = 5;
     Cards cards;
     private ImageButton[][] button;
@@ -39,10 +34,10 @@ public class GameActivity24 extends Activity {
             R.drawable.card2415, R.drawable.card2416, R.drawable.card2417, R.drawable.card2418, R.drawable.card2419,
             R.drawable.card2420, R.drawable.card2421, R.drawable.card2422, R.drawable.card2423, R.drawable.card2424};
 
-    private TextView tScore;
-    private int numbSteps;
-    private TextView tBestScore;
-    private int numbBestSteps;
+    private TextView scoreTV;
+    private int numOfSteps;
+    private TextView recordTV;
+    private int recordSteps;
 
 //    private Sound sound;
     private int clickSound;
@@ -54,8 +49,6 @@ public class GameActivity24 extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_game24);
 
         button = new ImageButton[N][N];
@@ -64,25 +57,28 @@ public class GameActivity24 extends Activity {
                 button[i][j] = (ImageButton) this.findViewById(BUT_ID[i][j]);
                 button[i][j].setOnClickListener(onClickListener);
             }
-        ImageButton bNewGame = (ImageButton) this.findViewById(R.id.bNewGame);
-        bNewGame.setOnClickListener(onClickListener);
-        ImageButton bBackMenu = (ImageButton) this.findViewById(R.id.bBackMenu);
-        bBackMenu.setOnClickListener(onClickListener);
-        ImageButton ibSound = (ImageButton) this.findViewById(R.id.bSoundOffOn);
-        ibSound.setOnClickListener(onClickListener);
-
-
         Typeface digitalFont = Typeface.createFromAsset(this.getAssets(), "font.ttf");
-        TextView tPyatnashki = (TextView) this.findViewById(R.id.tPyatnashki);
-        tPyatnashki.setTypeface(digitalFont);
-        TextView tSScore = (TextView) this.findViewById(R.id.tSScore);
-        tSScore.setTypeface(digitalFont);
-        tScore = (TextView) this.findViewById(R.id.tScore);
-        tScore.setTypeface(digitalFont);
-        TextView tBestSScore = (TextView) this.findViewById(R.id.tBestSScore);
-        tBestSScore.setTypeface(digitalFont);
-        tBestScore = (TextView) this.findViewById(R.id.tBestScore);
-        tBestScore.setTypeface(digitalFont);
+
+        ImageButton bNewGame = findViewById(R.id.bNewGame24);
+        ImageButton bBackMenu = findViewById(R.id.bBackMenu24);
+        ImageButton ibSound = findViewById(R.id.bSoundOffOn24);
+
+
+        TextView titleTV = findViewById(R.id.gameTitle24);
+        TextView textScoreTV = findViewById(R.id.tSScore24);
+        scoreTV = findViewById(R.id.tScore24);
+        TextView textRecordTV = findViewById(R.id.tBestSScore24);
+        recordTV =findViewById(R.id.tBestScore24);
+
+        titleTV.setTypeface(digitalFont);
+        textScoreTV.setTypeface(digitalFont);
+        scoreTV.setTypeface(digitalFont);
+        textRecordTV.setTypeface(digitalFont);
+        recordTV.setTypeface(digitalFont);
+
+        bBackMenu.setOnClickListener(navigateBtnsClickListener);
+        bNewGame.setOnClickListener(navigateBtnsClickListener);
+        ibSound.setOnClickListener(navigateBtnsClickListener);
 
 //        AssetManager AM = getAssets();
 //        sound = new Sound(AM);
@@ -99,26 +95,19 @@ public class GameActivity24 extends Activity {
         cards = new Cards(N, N);
         newGame();
     }
-
-    View.OnClickListener onClickListener = new View.OnClickListener() {
+    View.OnClickListener navigateBtnsClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if (!check)
-                for (int i = 0; i < N; i++)
-                    for (int j = 0; j < N; j++)
-                        if (v.getId() == BUT_ID[i][j])
-                            butFunc(i, j);
-
             switch (v.getId()) {
-                case R.id.bNewGame:
+                case R.id.bNewGame24:
 //                    sound.playSound(setButtonSound);
                     newGame();
                     break;
-                case R.id.bBackMenu:
+                case R.id.bBackMenu24:
 //                    sound.playSound(setButtonSound);
                     backMenu();
                     break;
-                case R.id.bSoundOffOn:
+                case R.id.bSoundOffOn24:
                     soundOffOn();
 //                    sound.playSound(setButtonSound);
                     break;
@@ -128,11 +117,26 @@ public class GameActivity24 extends Activity {
         }
     };
 
+    View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (!check) {
+                for (int i = 0; i < N; i++)
+                    for (int j = 0; j < N; j++)
+                        if (v.getId() == BUT_ID[i][j])
+                            butFunc(i, j);
+            }
+            else
+                Toast.makeText(GameActivity24.this, R.string.you_won_24, Toast.LENGTH_SHORT).show();
+
+        }
+    };
+
     public void butFunc(int row, int columb) {
         cards.moveCards(row, columb);
         if (cards.resultMove()) {
 //            sound.playSound(clickSound);
-            numbSteps++;
+            numOfSteps++;
             showGame();
             checkFinish();
         }
@@ -140,9 +144,9 @@ public class GameActivity24 extends Activity {
 
     public void newGame() {
         cards.getNewCards();
-        numbSteps = 0;
-        numbBestSteps = Integer.parseInt(readFile("fbs24"));
-        tBestScore.setText(Integer.toString(numbBestSteps));
+        numOfSteps = 0;
+        recordSteps = Integer.parseInt(readFile("fbs24"));
+        recordTV.setText(Integer.toString(recordSteps));
         showGame();
         check = false;
     }
@@ -154,7 +158,7 @@ public class GameActivity24 extends Activity {
 
 
     public void showGame() {
-        tScore.setText(Integer.toString(numbSteps));
+        scoreTV.setText(Integer.toString(numOfSteps));
 
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
@@ -166,14 +170,13 @@ public class GameActivity24 extends Activity {
     }
 
     public void checkFinish(){
-       /* cards.finished(N, N)*/
-        if(true){
+        if(cards.finished(N, N)){
             showGame();
             openDialog();
 //            sound.playSound(victorySound);
-            if ((numbSteps < numbBestSteps) || (numbBestSteps == 0)) {
-                writeFile(Integer.toString(numbSteps), "fbs24");
-                tBestScore.setText(Integer.toString(numbSteps));
+            if ((numOfSteps < recordSteps) || (recordSteps == 0)) {
+                writeFile(Integer.toString(numOfSteps), "fbs24");
+                recordTV.setText(Integer.toString(numOfSteps));
             }
             check = true;
         }
@@ -191,25 +194,12 @@ public class GameActivity24 extends Activity {
         Button finishButton = dialog.findViewById(R.id.finishButton);
         final EditText finishName = dialog.findViewById(R.id.finishName);
         TextView finishSteps = dialog.findViewById(R.id.finishSteps);
-        finishSteps.setText(numbSteps + " Steps");
+        finishSteps.setText(numOfSteps + " Steps");
         dialog.show();
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(GameActivity24.this, finishName.getText()+"", Toast.LENGTH_SHORT).show();
-                preferences = getSharedPreferences("PRES2",0);
-                editor=preferences.edit();
-                editor.putInt("lastScore",numbSteps);
-                editor.putString("playerName",finishName.getText().toString());
-                editor.apply();
-                Intent HighScoreIntent = new Intent(GameActivity24.this,LeaderBoard.class);
-                SharedPreferences preferences1=getSharedPreferences("BOARD",0);
-                SharedPreferences.Editor editor1=preferences1.edit();
-                editor1.putInt("board",3);
-                editor1.apply();
-
-
-                startActivity(HighScoreIntent);
                 dialog.dismiss();
 
             }

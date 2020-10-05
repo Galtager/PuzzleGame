@@ -36,7 +36,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Button highscoreButton = findViewById(R.id.highscore_button);
+
         Button startButton = findViewById(R.id.start_button);
         Button settingbutton = findViewById(R.id.setting_button);
         ImageButton facebook =findViewById(R.id.facebook);
@@ -52,15 +52,7 @@ public class Home extends AppCompatActivity {
         startButton.setOnClickListener(onClickListener);
 
 
-highscoreButton.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent HighScoreIntent = new Intent(Home.this,ViewPager.class);
-/*                String value="1";
-                HighScoreIntent.putExtra("board",value);*/
-        startActivity(HighScoreIntent);
-    }
-});
+
 
 
 
@@ -164,12 +156,7 @@ highscoreButton.setOnClickListener(new View.OnClickListener() {
         Resources resources = getResources();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();
         Configuration configuration = resources.getConfiguration();
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.JELLY_BEAN_MR1){
-            configuration.setLocale(new Locale(localeCode.toLowerCase()));
-        }
-        else {
-            configuration.locale = new Locale(localeCode.toLowerCase());
-        }
+        configuration.setLocale(new Locale(localeCode.toLowerCase()));
         resources.updateConfiguration(configuration,displayMetrics);
     }
     private void restartActivity()

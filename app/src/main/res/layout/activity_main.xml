@@ -83,6 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:fontFamily="@font/baloo"
+
             android:text="@string/logo"
             android:textColor="@android:color/white"
             android:textSize="80sp"

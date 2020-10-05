@@ -1,13 +1,11 @@
 package com.example.puzzlegame;
 
-import android.app.Activity;
-
 public class Cards {
     private int[][] board;
     private int n, m;
 
-    public Cards(int D, int M) {
-        n = D; m = M;
+    public Cards(int R, int C) {
+        n = R; m = C;
         board = new int [n][m];
     }
 
@@ -16,15 +14,15 @@ public class Cards {
         int boardX, boardY;
         for (int i = 0; i < (n * m - 1); i++) {
             board[i % n][i / m] = 0;
-        }
+        } // init all cards to 0;
         for (int i = 0; i < (n * m); i++) {
             boardX = (int)(Math.random() * n);
             boardY = (int)(Math.random() * m);
-            while(!(board[boardX][boardY] == 0)) {
+            while(!(board[boardX][boardY] == 0)) { // if card already assign , try to find another card who's still 0.
                 boardX = (int)(Math.random() * n);
                 boardY = (int)(Math.random() * m);
             }
-            board[boardX][boardY] = i;
+            board[boardX][boardY] = i; // assigning all cards the 0-8 numbers
         }
     }
 
@@ -39,17 +37,17 @@ public class Cards {
                 }
 
         result = false;
-        if (X0 == boardX || Y0 == boardY)
-            if (!(X0 == boardX && Y0 == boardY)) {
-                if (X0 == boardX)
-                    if (Y0 < boardY)
-                        for (int i = Y0 + 1; i <= boardY; i++)
-                            board[boardX][i - 1] = board[boardX][i];
-                    else
-                        for (int i = Y0; i > boardY; i--)
-                            board[boardX][i] = board[boardX][i - 1];
+        if (X0 == boardX || Y0 == boardY) // if you clicked on button in the right row/column same as the 0
+            if (!(X0 == boardX && Y0 == boardY)) { // if you didn't click on the 0 button
+                if (X0 == boardX) // if you clicked on button on the same Y axis with 0
+                    if (Y0 < boardY) // if the button bellow 0
+                        for (int i = Y0 + 1; i <= boardY; i++) // number of moves.
+                            board[boardX][i - 1] = board[boardX][i]; // moving the buttons
+                    else // if the button above 0
+                        for (int i = Y0; i > boardY; i--) // num of moves
+                            board[boardX][i] = board[boardX][i - 1]; // moving the buttons
 
-                if (Y0 == boardY)
+                if (Y0 == boardY) // check the same just for the x axis.
                     if (X0 < boardX)
                         for (int i = X0 + 1; i <= boardX; i++)
                             board[i-1][boardY] = board[i][boardY];
@@ -57,26 +55,27 @@ public class Cards {
                         for (int i = X0; i > boardX; i--)
                             board[i][boardY] = board[i - 1][boardY];
 
-                board[boardX][boardY] = 0;
+                board[boardX][boardY] = 0; // placing the 0 on the button we clicked
                 result = true;
             }
     }
 
     public boolean resultMove() {
+
         return result;
     }
 
     public boolean finished(int N, int M){
-        boolean finish = false;
-        if (board[N - 1][M - 1] == 0) {
+        boolean finish = false; //flag
+        if (board[N - 1][M - 1] == 0) { // first check the 0 is at the end
             int a = 0;
-            int b = 1;
+            int b = 1; // counter
             for (int i = 0; i < N; i++)
                 for (int j = 0; j < M; j++) {
                     a++;
                     if (board[i][j] == a) b++;
                 }
-            if (b == (N * M)) finish = true;
+            if (b == (N * M)) finish = true; // if b count every single card game finished.
         }
         return finish;
     }
