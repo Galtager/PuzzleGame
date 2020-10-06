@@ -20,9 +20,13 @@ import android.widget.TextView;
 public class ViewPagerFragment extends Fragment {
     SharedPreferences preferences;
     /*   SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());*/
+    View view;
     SharedPreferences.Editor editor;
     String playerName;
     Boolean difrentName;
+    Button btnRight;
+    Button btnLeft;
+    String msg;
     int lastScore;
     int rank1;
     int rank2;
@@ -34,7 +38,7 @@ public class ViewPagerFragment extends Fragment {
     int rank8;
     int rank9;
     int rank10;
-
+    int pos;
     String name1;
     String name2;
     String name3;
@@ -96,30 +100,75 @@ public class ViewPagerFragment extends Fragment {
 */
 
 
-        View view= inflater.inflate(R.layout.fragment_view_pager, container, false);
-        backToMainMenuButton= view.findViewById(R.id.backToMainMenu1);
+        view = inflater.inflate(R.layout.fragment_view_pager, container, false);
+        btnRight = (Button) view.findViewById(R.id.right1);
+        btnLeft = (Button) view.findViewById(R.id.left1);
+        pos = getArguments().getInt("page");
+
+        final View finalView = view;
+        btnLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (pos == 3) {
+                    pos = pos - 1;
+                    posss(pos);
+
+                } else if (pos == 2) {
+                    pos = pos - 1;
+                    posss(pos);
+                }
+                else if(pos == 1)
+                {
+                    pos = 3;
+                    posss(pos);
+                }
+            }
+        });
+        btnRight.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (pos == 1) {
+                    pos = 1 + pos;
+
+                    posss(pos);
+                } else if (pos == 2) {
+                    pos = 1 + pos;
+                    posss(pos);
+                }
+                 else if (pos == 3)
+            {
+                pos = 1;
+                posss(pos);
+            }
+
+            }
+        });
+
+
+        backToMainMenuButton = view.findViewById(R.id.backToMainMenu1);
+
 
         backToMainMenuButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent BackToMainMenuIntent = new Intent(getActivity(),Home.class);
+                Intent BackToMainMenuIntent = new Intent(getActivity(), Home.class);
                 startActivity(BackToMainMenuIntent);
             }
         });
-        textView =view.findViewById(R.id.SizeOfBoard);
-        String msg=getArguments().getString("massage");
-        int pos = getArguments().getInt("page");
-
-        textViewScore=view.findViewById(R.id.textViewScore1);
-        textViewName=view.findViewById(R.id.textViewName1);
-        textViewScore1=view.findViewById(R.id.textViewScore2);
-        textViewName1=view.findViewById(R.id.textViewName2);
-        textViewScore2=view.findViewById(R.id.textViewScore3);
-        textViewName2=view.findViewById(R.id.textViewName3);
-        difrentName =true;
-
+        textView = view.findViewById(R.id.SizeOfBoard);
+        textViewScore = view.findViewById(R.id.textViewScore1);
+        textViewName = view.findViewById(R.id.textViewName1);
+        textViewScore1 = view.findViewById(R.id.textViewScore2);
+        textViewName1 = view.findViewById(R.id.textViewName2);
+        textViewScore2 = view.findViewById(R.id.textViewScore3);
+        textViewName2 = view.findViewById(R.id.textViewName3);
+        difrentName = true;
+        posss(pos);
+/*
         if(pos== 1)
         {
+            btnLeft.setVisibility(view.GONE);
             preferences =this.getActivity().getSharedPreferences("PRES",0);
             editor = preferences.edit();
             name1 =preferences.getString("Name1","");
@@ -128,13 +177,13 @@ public class ViewPagerFragment extends Fragment {
              rank1=preferences.getInt("Rank1",0);
             rank2=preferences.getInt("Rank2",0);
              rank3=preferences.getInt("Rank3",0);
-/*            rank4=preferences.getInt("Rank4",0);
+            rank4=preferences.getInt("Rank4",0);
              rank5=preferences.getInt("Rank5",0);
             rank6=preferences.getInt("Rank6",0);
              rank7=preferences.getInt("Rank7",0);
             rank8=preferences.getInt("Rank8",0);
              rank9=preferences.getInt("Rank9",0);
-            rank10=preferences.getInt("Rank10",0);*//*
+            rank10=preferences.getInt("Rank10",0);
             lastScore=preferences.getInt("lastScore",0);
             playerName=preferences.getString("playerName","");
             if(lastScore>rank1)
@@ -164,50 +213,31 @@ public class ViewPagerFragment extends Fragment {
             editor.apply();
 
         }
-            else if(lastScore>rank2)
-            {
-                if(playerName==name2)
-                {
-                    difrentName=false;
-                }
-                if(difrentName==true) {
-                    int temp = rank2;
-                    String tempStr = name2;
-                    name2 = playerName;
-                    rank2 = lastScore;
-                    rank3 = temp;
-                    name3 = tempStr;
-                    editor.putInt("Rank3", rank3);
-                    editor.putInt("Rank2", rank2);
-                    editor.putString("Name3", name3);
-                    editor.putString("Name2", name2);
-                }
-                else
-                {
-                    rank2=lastScore;
-                    editor.putInt("Rank2",rank2);
+*/
+        return view;
+    }
 
-                }
+    private  void posss(int pos)
+    {
+        if(pos== 1)
+        {
+/*           btnRight.setVisibility(view.VISIBLE);
+            btnLeft.setVisibility(view.GONE);*/
+            preferences =this.getActivity().getSharedPreferences("PRES",0);
+            editor = preferences.edit();
+            name1 =preferences.getString("Name1","");
+            name2 =preferences.getString("Name2","");
+            name3 =preferences.getString("Name3","");
+            rank1=preferences.getInt("Rank1",0);
+            rank2=preferences.getInt("Rank2",0);
+            rank3=preferences.getInt("Rank3",0);
+            msg="3X3";
 
-
-            }
-            else if(lastScore>rank3)
-            {
-
-                rank3=lastScore;
-                editor.putInt("Rank3",rank3);
-                editor.putString("Name3",playerName);
-
-
-            }
-            editor.apply();
-
-*//*
-            textViewName.setText(playerName);
-            textViewScore.setText(Integer.toString(lastScore));*/
         }
         else if(pos== 2)
         {
+/*            btnLeft.setVisibility(view.VISIBLE);
+            btnRight.setVisibility(view.VISIBLE);*/
             textViewScore=view.findViewById(R.id.textViewScore1);
             textViewName=view.findViewById(R.id.textViewName1);
             preferences =this.getActivity().getSharedPreferences("PRES1",0);
@@ -220,10 +250,12 @@ public class ViewPagerFragment extends Fragment {
             rank1=preferences.getInt("Rank1",0);
             rank2=preferences.getInt("Rank2",0);
             rank3=preferences.getInt("Rank3",0);
-
+            msg="4X4";
         }
         else if(pos== 3)
         {
+/*            btnLeft.setVisibility(view.VISIBLE);
+            btnRight.setVisibility(view.GONE);*/
             textViewScore=view.findViewById(R.id.textViewScore1);
             textViewName=view.findViewById(R.id.textViewName1);
             preferences =this.getActivity().getSharedPreferences("PRES2",0);
@@ -236,7 +268,7 @@ public class ViewPagerFragment extends Fragment {
             rank1=preferences.getInt("Rank1",0);
             rank2=preferences.getInt("Rank2",0);
             rank3=preferences.getInt("Rank3",0);
-
+            msg="5X5";
         }
         name1 =preferences.getString("Name1","");
         name2 =preferences.getString("Name2","");
@@ -251,6 +283,5 @@ public class ViewPagerFragment extends Fragment {
         textViewName2.setText(name3);
         textViewScore2.setText(Integer.toString(rank3));
         textView.setText(msg);
-        return view;
     }
 }

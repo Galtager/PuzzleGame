@@ -15,16 +15,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             >
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/left"
+                android:id="@+id/left1"
                 android:textSize="40dp"
                 android:text="left"/>
-            <TextView
+            <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/right"
+                android:id="@+id/right1"
                 android:textSize="40dp"
                 android:text="right"
                 android:layout_marginStart="30dp"/>

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class ViewPager extends AppCompatActivity{
+public class ViewPager extends AppCompatActivity implements View.OnClickListener{
     TextView tvLeft;
     TextView tvRight;
     androidx.viewpager.widget.ViewPager viewPager;
@@ -22,6 +22,11 @@ public class ViewPager extends AppCompatActivity{
         viewPager =findViewById(R.id.ViewPager);
         adapter = new ViewPageFragmentCollectionAdapter(getSupportFragmentManager());
         viewPager.setAdapter(adapter);
+
+/*        tvLeft=(TextView)findViewById(R.id.left1);
+        tvRight=(TextView)findViewById(R.id.right1);
+        tvRight.setOnClickListener(this);*/
+
 /*        tvLeft=(TextView)findViewById(R.id.left);
         tvRight=(TextView)findViewById(R.id.right);
         tvRight.setOnClickListener(this);
@@ -64,4 +69,8 @@ public class ViewPager extends AppCompatActivity{
         });*/
     }
 
+    @Override
+    public void onClick(View view) {
+        viewPager.arrowScroll(View.FOCUS_LEFT);
+    }
 }
