@@ -47,13 +47,19 @@ public class Home extends AppCompatActivity {
         ImageButton instagram =findViewById(R.id.instagram);
         ImageButton github =findViewById(R.id.github);
         final ImageView doctorImageHome = this.findViewById(R.id.doctorImageHome);
-
+        Button leaderBoard = findViewById(R.id.highscore_button);
         github.setOnClickListener(onClickListener);
         instagram.setOnClickListener(onClickListener);
         facebook.setOnClickListener(onClickListener);
         settingbutton.setOnClickListener(onClickListener);
         startButton.setOnClickListener(onClickListener);
-
+        leaderBoard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent leaderBoardIntent = new Intent(Home.this,ViewPager.class);
+                startActivity(leaderBoardIntent);
+            }
+        });
         sound.backgroundMusic.start();
 
         YoYo.with(Techniques.Shake)

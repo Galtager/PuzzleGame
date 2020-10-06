@@ -2,6 +2,8 @@ package com.example.puzzlegame;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 
 public class GameActivity24 extends AppCompatActivity {
+    private SharedPreferences preferences;
+    private SharedPreferences.Editor editor;
+    private SharedPreferences preferences1;
+    SharedPreferences.Editor editor1;
+
     Sound sound=new Sound();
 
     private final int N = 5;
@@ -136,8 +143,10 @@ public class GameActivity24 extends AppCompatActivity {
     public void newGame() {
         cards.getNewCards();
         numOfSteps = 0;
-        recordSteps = Integer.parseInt(readFile("fbs24"));
-        recordTV.setText(Integer.toString(recordSteps));
+        preferences = getSharedPreferences("PRES1",0);
+        recordSteps=preferences.getInt("Rank1",0);
+/*        recordSteps = Integer.parseInt(readFile("fbs24"));
+        recordTV.setText(Integer.toString(recordSteps));*/
         showGame();
         check = false;
     }
@@ -159,7 +168,8 @@ public class GameActivity24 extends AppCompatActivity {
     }
 
     public void checkFinish(){
-        if(cards.finished(N, N)){
+        if(true){
+        /*if(cards.finished(N, N)){*/
             showGame();
             Sound.winningSound.start();
             openDialog();
@@ -184,7 +194,19 @@ public class GameActivity24 extends AppCompatActivity {
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(GameActivity24.this, finishName.getText()+"", Toast.LENGTH_SHORT).show();
+                preferences = getSharedPreferences("PRES2",0);
+                editor=preferences.edit();
+                editor.putInt("lastScore",numOfSteps);
+                editor.putString("playerName",finishName.getText().toString());
+                preferences1=getSharedPreferences("BOARD",0);
+                editor1=preferences1.edit();
+                editor1.putInt("board",3);
+                editor1.apply();
+                editor.apply();
+                Intent HighScoreIntent = new Intent(GameActivity24.this,LeaderBoard.class);
+/*                String value="1";
+                HighScoreIntent.putExtra("board",value);*/
+                startActivity(HighScoreIntent);
                 dialog.dismiss();
 
             }
