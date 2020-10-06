@@ -24,8 +24,9 @@
             />
         <ImageButton
             android:id="@+id/bSoundOffOn9"
-            android:background="@drawable/soundoff"
             style="@style/bNavigationStyle"
+            android:src="@drawable/soundoff"
+            android:background="@android:color/transparent"
             android:layout_alignParentRight="true"
             android:contentDescription="@string/button"
             />

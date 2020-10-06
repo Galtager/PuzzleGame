@@ -21,6 +21,14 @@
             style="@style/bNavigationStyle"
             android:contentDescription="@string/button"
             tools:ignore="RtlHardcoded" />
+        <ImageButton
+            android:id="@+id/bSoundOffOnChoose"
+            android:background="@android:color/transparent"
+            style="@style/bNavigationStyle"
+            android:src="@drawable/soundoff"
+            android:layout_alignParentRight="true"
+            android:contentDescription="@string/button"
+            />
     </RelativeLayout>
 
     <LinearLayout

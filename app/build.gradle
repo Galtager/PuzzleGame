@@ -36,5 +36,6 @@ dependencies {
 
     implementation 'com.google.android.material:material:1.2.1' //material desing
 
+    implementation 'com.rm:rmswitch:1.2.2'
 
 }

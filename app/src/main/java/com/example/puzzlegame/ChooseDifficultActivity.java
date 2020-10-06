@@ -14,7 +14,10 @@ import com.daimajia.androidanimations.library.YoYo;
 
 
 public class ChooseDifficultActivity extends AppCompatActivity {
-    
+    private ImageButton soundBtn;
+    Sound sound=new Sound();
+
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,17 +30,27 @@ public class ChooseDifficultActivity extends AppCompatActivity {
 
         ImageButton infoBtn = findViewById(R.id.howToPlayBtn);
         ImageButton backBtn = findViewById(R.id.levelBackMenu);
+        soundBtn = findViewById(R.id.bSoundOffOnChoose);
+
         final ImageView doctorImage = findViewById(R.id.doctorImage);
 
         game9Btn.setOnClickListener(onClickListener);
         game15Btn.setOnClickListener(onClickListener);
         game24Btn.setOnClickListener(onClickListener);
 
+        soundBtn.setOnClickListener(onClickListener);
         backBtn.setOnClickListener(onClickListener);
+
+        if(Sound.check)
+            soundBtn.setImageResource(R.drawable.soundon);
+        else
+            soundBtn.setImageResource(R.drawable.soundoff);
+
 
         infoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Sound.menuClickSound.start();
                 openDialog();
             }
         });
@@ -53,6 +66,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
 
             }
         },1000);
+
     }
     View.OnClickListener onClickListener = new View.OnClickListener(){
 
@@ -60,16 +74,28 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.btn1:
+                    Sound.menuClickSound.start();
+                    sound.switchMusic(sound.gameMusic,sound.backgroundMusic);
                     newGame(3);
                     break;
                 case R.id.btn2:
+                    Sound.menuClickSound.start();
+                    sound.switchMusic(sound.gameMusic,sound.backgroundMusic);
                     newGame(4);
                     break;
                 case R.id.btn3:
+                    Sound.menuClickSound.start();
+                    sound.switchMusic(sound.gameMusic,sound.backgroundMusic);
                     newGame(5);
                     break;
                 case R.id.levelBackMenu:
+                    Sound.menuClickSound.start();
                     back();
+                    break;
+                case R.id.bSoundOffOnChoose:
+                    soundOffOn();
+                    Sound.menuClickSound.start();
+                    break;
             }
         }
     };
@@ -84,7 +110,6 @@ public class ChooseDifficultActivity extends AppCompatActivity {
                 break;
             case 5:
                 gameChooserIntent = new Intent(ChooseDifficultActivity.this, GameActivity24.class);
-
                 break;
         }
         startActivity(gameChooserIntent);
@@ -103,6 +128,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         okBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Sound.buttonGameSound.start();
                 infoDialog.dismiss();
             }
         });
@@ -112,4 +138,19 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         super.finish();
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
     }
+    public void soundOffOn(){
+        if(Sound.check)
+        {
+            Sound.check=false;
+            soundBtn.setImageResource(R.drawable.soundoff);
+        }
+        else
+        {
+            Sound.check=true;
+            soundBtn.setImageResource(R.drawable.soundon);
+        }
+        sound.setSounds();
+        sound.setMusic();
+    }
+
 }

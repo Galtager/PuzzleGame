@@ -1,8 +1,10 @@
 package com.example.puzzlegame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -19,16 +21,19 @@ import com.daimajia.androidanimations.library.YoYo;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private static int TIME_OUT = 4000;
 
     Animation topAnimation,bottomAnimation,middleAnimation;
     View line1,line2,line3,line4,line5,line6;
     TextView signture,startLogo;
     RelativeLayout logo;
+    Sound sound=new Sound();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sound.createSound(MainActivity.this);
         setContentView(R.layout.activity_main);
 
         topAnimation= AnimationUtils.loadAnimation(this,R.anim.top_animation);

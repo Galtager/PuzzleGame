@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,7 +10,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="end"
         android:orientation="horizontal"
         android:layout_margin="7dp"
         android:layout_marginBottom="10dp"
@@ -24,8 +24,9 @@
             />
         <ImageButton
             android:id="@+id/bSoundOffOn24"
-            android:background="@drawable/soundoff"
+            android:background="@android:color/transparent"
             style="@style/bNavigationStyle"
+            android:src="@drawable/soundoff"
             android:layout_alignParentRight="true"
             android:contentDescription="@string/button"/>
         <ImageButton

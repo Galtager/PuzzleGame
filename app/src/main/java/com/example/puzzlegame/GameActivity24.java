@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -18,7 +16,11 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import android.graphics.Typeface;
 
-public class GameActivity24 extends Activity {
+import androidx.appcompat.app.AppCompatActivity;
+
+
+public class GameActivity24 extends AppCompatActivity {
+    Sound sound=new Sound();
 
     private final int N = 5;
     Cards cards;
@@ -38,11 +40,7 @@ public class GameActivity24 extends Activity {
     private int numOfSteps;
     private TextView recordTV;
     private int recordSteps;
-
-//    private Sound sound;
-    private int clickSound;
-    private int victorySound;
-    private int setButtonSound;
+    private ImageButton soundBtn;;
 
     private boolean check;
 
@@ -59,9 +57,9 @@ public class GameActivity24 extends Activity {
             }
         Typeface digitalFont = Typeface.createFromAsset(this.getAssets(), "font.ttf");
 
-        ImageButton bNewGame = findViewById(R.id.bNewGame24);
-        ImageButton bBackMenu = findViewById(R.id.bBackMenu24);
-        ImageButton ibSound = findViewById(R.id.bSoundOffOn24);
+        ImageButton newGameBtn = findViewById(R.id.bNewGame24);
+        ImageButton backBtn = findViewById(R.id.bBackMenu24);
+        soundBtn = findViewById(R.id.bSoundOffOn24);
 
 
         TextView titleTV = findViewById(R.id.gameTitle24);
@@ -76,21 +74,13 @@ public class GameActivity24 extends Activity {
         textRecordTV.setTypeface(digitalFont);
         recordTV.setTypeface(digitalFont);
 
-        bBackMenu.setOnClickListener(navigateBtnsClickListener);
-        bNewGame.setOnClickListener(navigateBtnsClickListener);
-        ibSound.setOnClickListener(navigateBtnsClickListener);
+        backBtn.setOnClickListener(navigateBtnsClickListener);
+        newGameBtn.setOnClickListener(navigateBtnsClickListener);
+        soundBtn.setOnClickListener(navigateBtnsClickListener);
 
-//        AssetManager AM = getAssets();
-//        sound = new Sound(AM);
-//        clickSound = sound.loadSound("Schelchok.mp3");
-//        victorySound = sound.loadSound("Victory.mp3");
-//        setButtonSound = sound.loadSound("Schelchok1.mp3");
-//
-//        try {
-//            sound.setCheckSound(getIntent().getExtras().getBoolean("checkSound"));
-//        } catch(Exception e) {
-//            sound.setCheckSound(true);
-//        }
+        if(Sound.check)
+            soundBtn.setImageResource(R.drawable.soundon);
+
 
         cards = new Cards(N, N);
         newGame();
@@ -100,16 +90,17 @@ public class GameActivity24 extends Activity {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.bNewGame24:
-//                    sound.playSound(setButtonSound);
+                    Sound.menuClickSound.start();
                     newGame();
                     break;
                 case R.id.bBackMenu24:
-//                    sound.playSound(setButtonSound);
+                    Sound.menuClickSound.start();
                     backMenu();
                     break;
                 case R.id.bSoundOffOn24:
                     soundOffOn();
-//                    sound.playSound(setButtonSound);
+                    Sound.menuClickSound.start();
+
                     break;
                 default:
                     break;
@@ -135,7 +126,7 @@ public class GameActivity24 extends Activity {
     public void butFunc(int row, int columb) {
         cards.moveCards(row, columb);
         if (cards.resultMove()) {
-//            sound.playSound(clickSound);
+            Sound.buttonGameSound.start();
             numOfSteps++;
             showGame();
             checkFinish();
@@ -153,6 +144,7 @@ public class GameActivity24 extends Activity {
 
 
     public void backMenu() {
+        sound.switchMusic(sound.backgroundMusic,sound.gameMusic);
         finish();
     }
 
@@ -164,16 +156,13 @@ public class GameActivity24 extends Activity {
             for (int j = 0; j < N; j++)
                 button[i][j].setImageResource(CARD_ID[cards.getValueBoard(i, j)]);
 
-//        if (sound.getCheckSound())
-//            ibSound.setImageResource(R.drawable.soundon);
-//        else ibSound.setImageResource(R.drawable.soundoff);
     }
 
     public void checkFinish(){
         if(cards.finished(N, N)){
             showGame();
+            Sound.winningSound.start();
             openDialog();
-//            sound.playSound(victorySound);
             if ((numOfSteps < recordSteps) || (recordSteps == 0)) {
                 writeFile(Integer.toString(numOfSteps), "fbs24");
                 recordTV.setText(Integer.toString(numOfSteps));
@@ -182,10 +171,6 @@ public class GameActivity24 extends Activity {
         }
     }
 
-    public void soundOffOn() {
-//        sound.setCheckSound(!sound.getCheckSound());
-        showGame();
-    }
     private void openDialog() {
         final Dialog dialog = new Dialog(GameActivity24.this);
         dialog.setContentView(R.layout.dialog_finished);
@@ -225,6 +210,7 @@ public class GameActivity24 extends Activity {
             text = "0";
         }
         return text;
+
     }
     @Override
     public void finish() {
@@ -232,4 +218,20 @@ public class GameActivity24 extends Activity {
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
 
     }
+    public void soundOffOn(){
+        if(Sound.check)
+        {
+            Sound.check=false;
+            soundBtn.setImageResource(R.drawable.soundoff);
+        }
+        else
+        {
+            Sound.check=true;
+            soundBtn.setImageResource(R.drawable.soundon);
+        }
+        sound.setSounds();
+        sound.setMusic();
+    }
+
+
 }

@@ -1,25 +1,21 @@
 package com.example.puzzlegame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
-import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.chip.Chip;
@@ -28,10 +24,18 @@ import java.util.Locale;
 
 public class Home extends AppCompatActivity {
 
-    boolean[] langFlag = {false};
-    boolean[] soundFlag = {false};
-    String[] tempLang = {""};
+    SwitchCompat soundSwitch;
+    boolean langFlag = false;
+    Sound sound=new Sound();
+    String tempLang = "";
     Dialog dialog;
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sound.realese();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,22 +48,19 @@ public class Home extends AppCompatActivity {
         ImageButton github =findViewById(R.id.github);
         final ImageView doctorImageHome = this.findViewById(R.id.doctorImageHome);
 
-
         github.setOnClickListener(onClickListener);
         instagram.setOnClickListener(onClickListener);
         facebook.setOnClickListener(onClickListener);
         settingbutton.setOnClickListener(onClickListener);
         startButton.setOnClickListener(onClickListener);
 
-
-
-
-
+        sound.backgroundMusic.start();
 
         YoYo.with(Techniques.Shake)
                 .duration(3000)
                 .repeat(2)
                 .playOn(startButton);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -73,27 +74,33 @@ public class Home extends AppCompatActivity {
         },1000);
 
     }
+
     View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent browserIntent;
             switch (v.getId()) {
                 case R.id.facebook:
+                    Sound.buttonGameSound.start();
                     browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com"));
                     startActivity(browserIntent);
                     break;
                 case R.id.instagram:
+                    Sound.buttonGameSound.start();
                     browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.instagram.com"));
                     startActivity(browserIntent);
                     break;
                 case R.id.github:
+                    Sound.buttonGameSound.start();
                     browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Galtager/PuzzleGame"));
                     startActivity(browserIntent);
                     break;
                 case R.id.setting_button:
                     openDialog();
+                    Sound.menuClickSound.start();
                     break;
                 case R.id.start_button:
+                    Sound.menuClickSound.start();
                     Intent chooseDifficultIntent = new Intent(Home.this, ChooseDifficultActivity.class);
                     startActivity(chooseDifficultIntent);
                     overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
@@ -102,21 +109,29 @@ public class Home extends AppCompatActivity {
         }
     };
     public void openDialog(){
+        langFlag=false;
         dialog = new Dialog(Home.this);
         dialog.setContentView(R.layout.dialog_setting);
         dialog.show();
         Chip hebrewChip = dialog.findViewById(R.id.hebrewChip);
         Chip englishChip = dialog.findViewById(R.id.englishChip);
-        Chip soundOnChip = dialog.findViewById(R.id.soundOnChip);
-        Chip soundOffChip = dialog.findViewById(R.id.soundOffChip);
+        soundSwitch = dialog.findViewById(R.id.sound_switch);
+        soundSwitch.setChecked(Sound.check);
+        soundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                    sound.check=true;
+                else
+                    sound.check=false;
+            }
+        });
 
         Button submitButton = dialog.findViewById(R.id.submitButton);
 
         hebrewChip.setOnClickListener(dialogClickListener);
         englishChip.setOnClickListener(dialogClickListener);
         submitButton.setOnClickListener(dialogClickListener);
-        soundOffChip.setOnClickListener(dialogClickListener);
-        soundOnChip.setOnClickListener(dialogClickListener);
 
     }
     View.OnClickListener dialogClickListener = new View.OnClickListener() {
@@ -124,30 +139,25 @@ public class Home extends AppCompatActivity {
         public void onClick(View v) {
             switch (v.getId()){
                 case R.id.hebrewChip:
-                    langFlag[0] = true;
-                    tempLang[0] = "iw";
+                    Sound.buttonGameSound.start();
+                    langFlag = true;
+                    tempLang = "iw";
                     break;
                 case R.id.englishChip:
-                    langFlag[0]=true;
-                    tempLang[0]="en";
-                    break;
-                case R.id.soundOnChip:
-                    soundFlag[0] = true;
-                    break;
-                case R.id.soundOffChip:
-                    soundFlag[0] = true;
+                    Sound.buttonGameSound.start();
+                    langFlag=true;
+                    tempLang ="en";
                     break;
                 case R.id.submitButton:
-                    if (soundFlag[0])
-                        Toast.makeText(Home.this, "Music Changes", Toast.LENGTH_SHORT).show();
-                    if(langFlag[0])
+                    Sound.menuClickSound.start();
+                    sound.setSounds();
+                    sound.setMusic();
+                    if(langFlag)
                     {
-
-                        setAppLocale(tempLang[0]);
-                        dialog.dismiss();
-                        restartActivity();}
-
-
+                        setAppLocale(tempLang);
+                        restartActivity();
+                    }
+                    dialog.dismiss();
             }
         }
     };
@@ -165,4 +175,5 @@ public class Home extends AppCompatActivity {
         finish();
         startActivity(intent);
     }
+
 }

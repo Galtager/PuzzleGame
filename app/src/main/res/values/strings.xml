@@ -45,4 +45,5 @@
     <string name="finished_button">Submit</string>
     <string name="you_won_toast">You Won the game, Go Back and try the Harder Board</string>
     <string name="you_won_24">You won the most difficult level\' new levels will open soon</string>
+    <string name="mute_unmute_sound">Mute/Unmute Sound</string>
 </resources>

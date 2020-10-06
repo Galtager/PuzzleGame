@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameActivity15 extends AppCompatActivity {
 
+    Sound sound=new Sound();
+
     private final int N = 4;
     Cards cards;
     private ImageButton[][] button;
@@ -35,14 +37,7 @@ public class GameActivity15 extends AppCompatActivity {
     private int numOfSteps;
     private TextView recordTV;
     private int recordSteps;
-
-//    private Sound setOnClickListenerund;
-    private int clickSound;
-    private int victorySound;
-    private int setButtonSound;
-
     private ImageButton soundBtn;;
-
     private boolean check;
 
     @Override
@@ -59,9 +54,9 @@ public class GameActivity15 extends AppCompatActivity {
         Typeface digitalFont = Typeface.createFromAsset(this.getAssets(), "font.ttf");
 
 
-        ImageButton bNewGame =findViewById(R.id.bNewGame15);
-        ImageButton bBackMenu =findViewById(R.id.bBackMenu15);
-        soundBtn =findViewById(R.id.bSoundOffOn15);
+        ImageButton newGameBtn =findViewById(R.id.bNewGame15);
+        ImageButton backBtn =findViewById(R.id.bBackMenu15);
+        soundBtn = findViewById(R.id.bSoundOffOn15);
 
 
         TextView titleTV = findViewById(R.id.gameTitle15);
@@ -77,24 +72,13 @@ public class GameActivity15 extends AppCompatActivity {
         recordTV.setTypeface(digitalFont);
 
 
-        bNewGame.setOnClickListener(navigateBtnsClickListener);
-        bBackMenu.setOnClickListener(navigateBtnsClickListener);
+        newGameBtn.setOnClickListener(navigateBtnsClickListener);
+        backBtn.setOnClickListener(navigateBtnsClickListener);
         soundBtn.setOnClickListener(navigateBtnsClickListener);
 
+        if(Sound.check)
+            soundBtn.setImageResource(R.drawable.soundon);
 
-
-
-//        AssetManager AM = getAssets();
-//        sound = new Sound(AM);
-//        clickSound = sound.loadSound("Schelchok.mp3");
-//        victorySound = sound.loadSound("Victory.mp3");
-//        setButtonSound = sound.loadSound("Schelchok1.mp3");
-//
-//        try {
-//            sound.setCheckSound(getIntent().getExtras().getBoolean("checkSound"));
-//        } catch(Exception e) {
-//            sound.setCheckSound(true);
-//        }
 
         cards = new Cards(N, N);
         newGame();
@@ -103,18 +87,18 @@ public class GameActivity15 extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             switch(v.getId()) {
-                case R.id.bNewGame24:
-//                    sound.playSound(setButtonSound);
+                case R.id.bNewGame15:
+                    Sound.menuClickSound.start();
                     newGame();
                     break;
-                case R.id.bBackMenu24:
-//                    sound.playSound(setButtonSound);
+                case R.id.bBackMenu15:
+                    Sound.menuClickSound.start();
                     backMenu();
                     break;
-//                case R.id.bSoundOffOn24:
-//                    soundOffOn();
-//                    sound.playSound(setButtonSound);
-//                    break;
+                case R.id.bSoundOffOn15:
+                    soundOffOn();
+                    Sound.menuClickSound.start();
+                    break;
                 default:
                     break;
             }
@@ -139,7 +123,7 @@ public class GameActivity15 extends AppCompatActivity {
     public void buttonFunction(int row, int column) {
         cards.moveCards(row, column);
         if(cards.resultMove()) {
-//            sound.playSound(clickSound);
+            Sound.buttonGameSound.start();
             numOfSteps++;
             showGame();
             checkFinish();
@@ -156,12 +140,9 @@ public class GameActivity15 extends AppCompatActivity {
     }
 
     public void backMenu() {
+        sound.switchMusic(sound.backgroundMusic,sound.gameMusic);
         finish();
     }
-
-//    public void aboutOnClick() {
-//        startActivity(new Intent(GameActivity15.this, AboutActivity.class));
-//    }
 
     public void showGame() {
         scoreTV.setText(Integer.toString(numOfSteps));
@@ -169,17 +150,13 @@ public class GameActivity15 extends AppCompatActivity {
         for(int i = 0; i < N; i++)
             for(int j = 0; j < N; j++)
                 button[i][j].setImageResource(CADRS_ID[cards.getValueBoard(i, j)]);
-
-//        if (sound.getCheckSound())
-//            ibSound.setImageResource(R.drawable.soundon);
-//        else ibSound.setImageResource(R.drawable.soundoff);
     }
 
     public void checkFinish(){
         if(cards.finished(N, N)){
             showGame();
+            Sound.winningSound.start();
             openDialog();
-//            sound.playSound(victorySound);
             if ((numOfSteps < recordSteps) || (recordSteps == 0)) {
                 writeFile(Integer.toString(numOfSteps), "fbs15");
                 recordTV.setText(Integer.toString(numOfSteps));
@@ -188,10 +165,6 @@ public class GameActivity15 extends AppCompatActivity {
         }
     }
 
-    public void soundOffOn() {
-//        sound.setCheckSound(!sound.getCheckSound());
-        showGame();
-    }
     private void openDialog() {
         final Dialog dialog = new Dialog(GameActivity15.this);
         dialog.setContentView(R.layout.dialog_finished);
@@ -238,4 +211,19 @@ public class GameActivity15 extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
 
     }
+    public void soundOffOn(){
+        if(Sound.check)
+        {
+            Sound.check=false;
+            soundBtn.setImageResource(R.drawable.soundoff);
+        }
+        else
+        {
+            Sound.check=true;
+            soundBtn.setImageResource(R.drawable.soundon);
+        }
+        sound.setSounds();
+        sound.setMusic();
+    }
+
 }

@@ -46,4 +46,5 @@
     <string name="finished_button">אשר</string>
     <string name="you_won_toast">ניצחת את הלוח, חזור ונסה את השלב הבא</string>
     <string name="you_won_24">ניצחת את השלב האחרון, בקרוב ייפתחו שלבים חדשים</string>
+    <string name="mute_unmute_sound">כבה/הדלק שמע</string>
 </resources>
