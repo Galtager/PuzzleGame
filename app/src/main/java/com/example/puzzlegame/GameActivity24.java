@@ -1,9 +1,6 @@
 package com.example.puzzlegame;
 
-import android.app.Activity;
 import android.app.Dialog;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,23 +8,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
 import android.graphics.Typeface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class GameActivity24 extends AppCompatActivity {
-    private SharedPreferences preferences;
-    private SharedPreferences.Editor editor;
-    private SharedPreferences preferences1;
-    SharedPreferences.Editor editor1;
 
-    Sound sound=new Sound();
 
     private final int N = 5;
     Cards cards;
@@ -48,13 +35,18 @@ public class GameActivity24 extends AppCompatActivity {
     private TextView recordTV;
     private int recordSteps;
     private ImageButton soundBtn;;
-
     private boolean check;
+
+    DataBase dataBase = new DataBase(this);
+    Sound sound=new Sound();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dataBase.setPrefRef("PRESNAME24","PRESSCORE24");
         setContentView(R.layout.activity_game24);
+
 
         button = new ImageButton[N][N];
         for (int i = 0; i < N; i++)
@@ -107,7 +99,6 @@ public class GameActivity24 extends AppCompatActivity {
                 case R.id.bSoundOffOn24:
                     soundOffOn();
                     Sound.menuClickSound.start();
-
                     break;
                 default:
                     break;
@@ -143,17 +134,15 @@ public class GameActivity24 extends AppCompatActivity {
     public void newGame() {
         cards.getNewCards();
         numOfSteps = 0;
-        preferences = getSharedPreferences("PRES1",0);
-        recordSteps=preferences.getInt("Rank1",0);
-/*        recordSteps = Integer.parseInt(readFile("fbs24"));
-        recordTV.setText(Integer.toString(recordSteps));*/
+        recordSteps=dataBase.getMaxScore(3,"PRESSCORE24");
+        recordTV.setText(Integer.toString(recordSteps));
         showGame();
         check = false;
     }
 
 
     public void backMenu() {
-        sound.switchMusic(sound.backgroundMusic,sound.gameMusic);
+        sound.switchMusic(Sound.backgroundMusic,Sound.gameMusic);
         finish();
     }
 
@@ -168,13 +157,11 @@ public class GameActivity24 extends AppCompatActivity {
     }
 
     public void checkFinish(){
-        if(true){
-        /*if(cards.finished(N, N)){*/
+        if(cards.finished(N, N)){
             showGame();
             Sound.winningSound.start();
             openDialog();
             if ((numOfSteps < recordSteps) || (recordSteps == 0)) {
-                writeFile(Integer.toString(numOfSteps), "fbs24");
                 recordTV.setText(Integer.toString(numOfSteps));
             }
             check = true;
@@ -194,46 +181,25 @@ public class GameActivity24 extends AppCompatActivity {
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preferences = getSharedPreferences("PRES2",0);
-                editor=preferences.edit();
-                editor.putInt("lastScore",numOfSteps);
-                editor.putString("playerName",finishName.getText().toString());
-                preferences1=getSharedPreferences("BOARD",0);
-                editor1=preferences1.edit();
-                editor1.putInt("board",3);
-                editor1.apply();
-                editor.apply();
-                Intent HighScoreIntent = new Intent(GameActivity24.this,LeaderBoard.class);
-/*                String value="1";
-                HighScoreIntent.putExtra("board",value);*/
-                startActivity(HighScoreIntent);
+                int numOfScores,checkPlace;
+                dataBase.setPrefRef("PRESNAME24","PRESSCORE24");
+                numOfScores = dataBase.preferencesCounter.getInt("game24counter",0);
+                if(numOfScores>=10) {
+                    checkPlace = dataBase.checkIfScoreIsBest("PRESSCORE24", numOfSteps);
+                    if (checkPlace!=(-1)) {
+                        dataBase.changeValues(finishName.getText().toString(),numOfSteps,3,checkPlace);
+                    }
+                }
+                else
+                    dataBase.setValues(finishName.getText().toString(),numOfSteps,3);
+
                 dialog.dismiss();
+
 
             }
         });
     }
 
-    public void writeFile(String text, String FILENAME) {
-        try {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(openFileOutput(FILENAME, MODE_PRIVATE)));
-            bw.write(text);
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public String readFile(String FILENAME) {
-        String text;
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(openFileInput(FILENAME)));
-            text = br.readLine();
-        } catch(IOException e) {
-            text = "0";
-        }
-        return text;
-
-    }
     @Override
     public void finish() {
         super.finish();

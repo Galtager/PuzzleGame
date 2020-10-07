@@ -37,8 +37,19 @@
     <string name="accept_changes">שמור שינויים</string>
     <string name="info_dialog_button">הבנתי</string>
     <string name="info_title">איך לשחק?</string>
-    <string name="info_text_init">בהתחלה זה ייראה פשוט, אך יוכח לך אחרת</string>
-    <string name="info_text">1) First chose the size of the board.\n2) There is no need to shuffle… we will do it\nfor you.\n3) You are ready. Play and injoy. Your goal is to move the puzzle parts to their place: the sequence you dicided to solve.\n \nAlso, take a tip form us: if you are unhappy with the starting position, or made a mistake you can just shuffle again and start from the beginning.\n \nAnd remember not everything is possible.</string>
+    <string name="info_text_init">זה מאוד פשוט להתחיל אבל לסיים זה סיפור אחר...</string>
+    <string name="info_text">
+1.ראשית בחר את גודל הלוח שאתה מעוניין בו
+\n\n2.מיד תעבור למשחק ותראה מולך לוח ועל גביו לוחיות עם מספרים.
+אין צורך לערבב אותן הן מגיעות מעורבבות.
+\n\n3.אתה מוכן לשחק, תהנה. המטרה שלך היא לסדר את הלוחיות לפי הסדר מהקטן לגדול, משמאל לימין ומלמעלה למטה. אם תצליח יקפוץ מסך שיבשר על ניצחון.
+\n\n4.אתה כמובן רוצה להשלים את הפאזל בכמה שפחות צעדים.
+\n
+        \n
+טיפ מאיתנו: אם אתה לא מרוצה מהסידור או מרגיש שנתקעת או עשית טעות, אתה יכול לערבב מחדש את הלוחיות ומונה הצעדים שלך יתאפס.
+
+ותזכור, לא הכל אפשרי....
+</string>
     <string name="finished_dialog_text">ברכותיי, ניצחת את השחק ב </string>
     <string name="finished_steps">צעדים</string>
     <string name="finished_name">הכנס את שמך</string>

@@ -43,24 +43,20 @@ public class Home extends AppCompatActivity {
 
         Button startButton = findViewById(R.id.start_button);
         Button settingbutton = findViewById(R.id.setting_button);
+        Button leaderBoard = findViewById(R.id.highscore_button);
+
         ImageButton facebook =findViewById(R.id.facebook);
         ImageButton instagram =findViewById(R.id.instagram);
         ImageButton github =findViewById(R.id.github);
         final ImageView doctorImageHome = this.findViewById(R.id.doctorImageHome);
-        Button leaderBoard = findViewById(R.id.highscore_button);
         github.setOnClickListener(onClickListener);
         instagram.setOnClickListener(onClickListener);
         facebook.setOnClickListener(onClickListener);
         settingbutton.setOnClickListener(onClickListener);
         startButton.setOnClickListener(onClickListener);
-        leaderBoard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent leaderBoardIntent = new Intent(Home.this,ViewPager.class);
-                startActivity(leaderBoardIntent);
-            }
-        });
-        sound.backgroundMusic.start();
+        leaderBoard.setOnClickListener(onClickListener);
+
+        Sound.backgroundMusic.start();
 
         YoYo.with(Techniques.Shake)
                 .duration(3000)
@@ -109,6 +105,12 @@ public class Home extends AppCompatActivity {
                     Sound.menuClickSound.start();
                     Intent chooseDifficultIntent = new Intent(Home.this, ChooseDifficultActivity.class);
                     startActivity(chooseDifficultIntent);
+                    overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
+                    break;
+                case R.id.highscore_button:
+                    Sound.menuClickSound.start();
+                    Intent leaderBoardIntent = new Intent(Home.this,ViewPager.class);
+                    startActivity(leaderBoardIntent);
                     overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
                     break;
             }

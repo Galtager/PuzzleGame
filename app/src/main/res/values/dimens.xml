@@ -8,15 +8,15 @@
 
     <dimen name="buttonNavigation">50dp</dimen>
 
-    <dimen name="textScore15">36sp</dimen>
+    <dimen name="textScore15">30sp</dimen>
     <dimen name="textRecord15">30sp</dimen>
     <dimen name="buttonSize15">80dp</dimen>
 
-    <dimen name="textScore24">34sp</dimen>
-    <dimen name="textRecord24">26sp</dimen>
+    <dimen name="textScore24">30sp</dimen>
+    <dimen name="textRecord24">30sp</dimen>
     <dimen name="buttonSize24">60dp</dimen>
 
-    <dimen name="textScore9">36sp</dimen>
+    <dimen name="textScore9">30sp</dimen>
     <dimen name="textRecord9">30sp</dimen>
     <dimen name="buttonSize9">100dp</dimen>
 </resources>
