@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -24,16 +26,24 @@ import java.util.Locale;
 
 public class Home extends AppCompatActivity {
 
+    private static final String TAG = "State changed";
+
+
     SwitchCompat soundSwitch;
     boolean langFlag = false;
     Sound sound=new Sound();
     String tempLang = "";
     Dialog dialog;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        sound.createSound(Home.this);
+
 
         Button startButton = findViewById(R.id.start_button);
         Button settingbutton = findViewById(R.id.setting_button);
@@ -157,9 +167,10 @@ public class Home extends AppCompatActivity {
                     if(langFlag)
                     {
                         setAppLocale(tempLang);
-                        restartActivity();
+                        restartActivity(Home.this);
                     }
                     dialog.dismiss();
+                    break;
             }
         }
     };
@@ -171,11 +182,12 @@ public class Home extends AppCompatActivity {
         configuration.setLocale(new Locale(localeCode.toLowerCase()));
         resources.updateConfiguration(configuration,displayMetrics);
     }
-    private void restartActivity()
+    private void restartActivity(Context context)
     {
-        Intent intent = getIntent();
         finish();
-        startActivity(intent);
+        startActivity(getIntent());
+        Sound.backgroundMusic.release();
+
     }
 
 }

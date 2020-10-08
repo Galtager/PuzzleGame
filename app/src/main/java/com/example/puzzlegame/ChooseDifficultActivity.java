@@ -17,9 +17,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
     private ImageButton soundBtn;
     Sound sound=new Sound();
 
-
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_difficult);

@@ -176,7 +176,7 @@ public class GameActivity24 extends AppCompatActivity {
         Button finishButton = dialog.findViewById(R.id.finishButton);
         final EditText finishName = dialog.findViewById(R.id.finishName);
         TextView finishSteps = dialog.findViewById(R.id.finishSteps);
-        finishSteps.setText(numOfSteps + " Steps");
+        finishSteps.setText(numOfSteps +" "+getString(R.string.finished_steps));
         dialog.show();
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override

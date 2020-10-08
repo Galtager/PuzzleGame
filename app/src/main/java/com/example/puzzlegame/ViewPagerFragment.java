@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 public class ViewPagerFragment extends Fragment {
+
     View view;
     String msg;
     int pos;

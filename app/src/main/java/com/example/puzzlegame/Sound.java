@@ -3,10 +3,6 @@ package com.example.puzzlegame;
 import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import android.view.View;
-
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 
 public class Sound{
     public static MediaPlayer menuClickSound, buttonGameSound,winningSound,backgroundMusic,gameMusic;

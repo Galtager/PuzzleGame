@@ -57,4 +57,5 @@
     <string name="rank">דירוג</string>
     <string name="name">שם</string>
     <string name="score">תוצאה</string>
+    <string name="empty">ריק</string>
 </resources>
