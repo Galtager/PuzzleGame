@@ -30,11 +30,14 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout logo;
     Sound sound=new Sound();
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        sound.createSound(MainActivity.this);
         setContentView(R.layout.activity_main);
+        sound.createSound(MainActivity.this);
 
         topAnimation= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnimation= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);

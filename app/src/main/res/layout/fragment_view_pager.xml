@@ -10,11 +10,10 @@
 
     <!-- TODO: Update blank fragment layout -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            style="?android:listSeparatorTextViewStyle"
-            android:gravity="center">
+            style="?android:listSeparatorTextViewStyle">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -27,11 +26,12 @@
             <ScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="40dp"
+                android:layout_margin="50dp"
+                android:layout_gravity="center"
                 android:background="@drawable/scroll_view_style">
 
                 <TableLayout
-                    android:layout_width="280dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="10dp"
@@ -53,7 +53,7 @@
                             android:layout_margin="1dp"
                             android:background="#FFFFFF"
                             android:gravity="center"
-                            android:text=" Rank "
+                            android:text="@string/rank"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
                             android:layout_margin="1dp"
                             android:background="#FFFFFF"
                             android:gravity="center"
-                            android:text="Name "
+                            android:text="@string/name"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textStyle="bold" />
 
@@ -75,7 +75,7 @@
                             android:layout_margin="1dp"
                             android:background="#FFFFFF"
                             android:gravity="center"
-                            android:text="Score"
+                            android:text="@string/score"
                             android:textAppearance="?android:attr/textAppearanceLarge"
                             android:textStyle="bold" />
                     </TableRow>

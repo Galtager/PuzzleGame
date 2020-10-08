@@ -10,7 +10,7 @@
     <string name="bestScore">שיא</string>
     <string name="you_won">ניצחת את המשחק , נסה את הפאזל היותר מתקדם</string>
     <string name="about_title">אודות:</string>
-    <string name="button">כפתור</string>
+    <string name="button">button</string>
     <string name="buttonSound">כפתור שמע</string>
     <string name="level15">רמה 15</string>
     <string name="level24">רמה 24</string>
@@ -44,18 +44,17 @@
 אין צורך לערבב אותן הן מגיעות מעורבבות.
 \n\n3.אתה מוכן לשחק, תהנה. המטרה שלך היא לסדר את הלוחיות לפי הסדר מהקטן לגדול, משמאל לימין ומלמעלה למטה. אם תצליח יקפוץ מסך שיבשר על ניצחון.
 \n\n4.אתה כמובן רוצה להשלים את הפאזל בכמה שפחות צעדים.
-\n
-        \n
-טיפ מאיתנו: אם אתה לא מרוצה מהסידור או מרגיש שנתקעת או עשית טעות, אתה יכול לערבב מחדש את הלוחיות ומונה הצעדים שלך יתאפס.
-
 ותזכור, לא הכל אפשרי....
 </string>
-    <string name="finished_dialog_text">ברכותיי, ניצחת את השחק ב </string>
-    <string name="finished_steps">צעדים</string>
+    <string name="finished_dialog_text">כל הכבוד!\nניצחת את  המשחק ב</string>
+    <string name="finished_steps"> צעדים</string>
     <string name="finished_name">הכנס את שמך</string>
     <string name="finished_edittext">שם</string>
     <string name="finished_button">אשר</string>
     <string name="you_won_toast">ניצחת את הלוח, חזור ונסה את השלב הבא</string>
     <string name="you_won_24">ניצחת את השלב האחרון, בקרוב ייפתחו שלבים חדשים</string>
     <string name="mute_unmute_sound">כבה/הדלק שמע</string>
+    <string name="rank">דירוג</string>
+    <string name="name">שם</string>
+    <string name="score">תוצאה</string>
 </resources>

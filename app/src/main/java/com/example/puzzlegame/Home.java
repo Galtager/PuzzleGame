@@ -31,12 +31,6 @@ public class Home extends AppCompatActivity {
     Dialog dialog;
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        sound.realese();
-    }
-
-    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);

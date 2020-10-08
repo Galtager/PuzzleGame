@@ -34,6 +34,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/leftnavigate"
         android:padding="10dp"
+        android:layout_alignParentLeft="true"
         android:id="@+id/leftBtn"
         android:background="@android:color/transparent"
         android:layout_centerVertical="true"/>

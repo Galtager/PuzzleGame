@@ -148,16 +148,14 @@ public class GameActivity9 extends AppCompatActivity {
             for(int j = 0; j < N; j++)
                 button[i][j].setImageResource(CARDS_ID[cards.getValueBoard(i, j)]);
     }
-
     public void checkFinish(){
-        if(cards.finished(N, N)){
+        if(true){
             showGame();
             Sound.winningSound.start();
             openDialog();
             if ((numOfSteps < recordSteps) || (recordSteps == 0)) {
                 recordTV.setText(Integer.toString(numOfSteps));
             }
-
             check = true;
         }
     }
@@ -170,7 +168,7 @@ public class GameActivity9 extends AppCompatActivity {
         Button finishButton = dialog.findViewById(R.id.finishButton);
         final EditText finishName = dialog.findViewById(R.id.finishName);
         TextView finishSteps = dialog.findViewById(R.id.finishSteps);
-        finishSteps.setText(numOfSteps + " Steps");
+        finishSteps.setText(numOfSteps +" "+getString(R.string.finished_steps));
         dialog.show();
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override

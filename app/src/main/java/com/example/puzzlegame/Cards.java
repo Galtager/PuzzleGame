@@ -3,9 +3,10 @@ package com.example.puzzlegame;
 public class Cards {
     private int[][] board;
     private int n, m;
+    private boolean result;
 
-    public Cards(int R, int C) {
-        n = R; m = C;
+    public Cards(int N, int M) {
+        n = N; m = M;
         board = new int [n][m];
     }
 
@@ -25,8 +26,6 @@ public class Cards {
             board[boardX][boardY] = i; // assigning all cards the 0-8 numbers
         }
     }
-
-    private boolean result;
     public void moveCards(int boardX, int boardY){
         int X0 = -1, Y0 = -1;
         for(int i = 0; i < n; i++)
@@ -35,7 +34,6 @@ public class Cards {
                     X0 = i;
                     Y0 = j;
                 }
-
         result = false;
         if (X0 == boardX || Y0 == boardY) // if you clicked on button in the right row/column same as the 0
             if (!(X0 == boardX && Y0 == boardY)) { // if you didn't click on the 0 button

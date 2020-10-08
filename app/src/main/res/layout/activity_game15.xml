@@ -93,7 +93,8 @@
             android:layout_gravity="center"
             android:columnCount="4"
             android:rowCount="4"
-            android:background="@drawable/grid_border">
+            android:background="@drawable/grid_border"
+            android:layoutDirection="ltr">
 
             <ImageButton
                 android:id="@+id/b1500"

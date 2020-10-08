@@ -39,11 +39,14 @@
     <string name="info_text_init">It\'s very simple to start but hard to finish</string>
     <string name="info_text">1) First chose the size of the board.\n2) There is no need to shuffle… we will do it\nfor you.\n3) You are ready. Play and injoy. Your goal is to move the puzzle parts to their place: the sequence you dicided to solve.\n \nAlso, take a tip form us: if you are unhappy with the starting position, or made a mistake you can just shuffle again and start from the beginning.\n \nAnd remember not everything is possible.</string>
     <string name="finished_dialog_text">Congratulations \n You won the game in</string>
-    <string name="finished_steps">x Steps</string>
+    <string name="finished_steps"> Steps</string>
     <string name="finished_name">Please Enter Your Name</string>
     <string name="finished_edittext">Enter you Name</string>
     <string name="finished_button">Submit</string>
     <string name="you_won_toast">You Won the game, Go Back and try the Harder Board</string>
     <string name="you_won_24">You won the most difficult level\' new levels will open soon</string>
     <string name="mute_unmute_sound">Mute/Unmute Sound</string>
+    <string name="rank">Rank</string>
+    <string name="name">Name</string>
+    <string name="score">Score</string>
 </resources>

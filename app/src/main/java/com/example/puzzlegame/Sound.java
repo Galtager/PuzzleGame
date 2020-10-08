@@ -21,6 +21,9 @@ public class Sound{
         backgroundMusic = MediaPlayer.create(mContext,R.raw.backgroundsound);
         gameMusic = MediaPlayer.create(mContext,R.raw.gamesound);
 
+        gameMusic.setLooping(true);
+        backgroundMusic.setLooping(true);
+
         setMusic();
         setSounds();
     }
@@ -41,9 +44,6 @@ public class Sound{
     }
 
     public void setMusic(){
-        gameMusic.setLooping(true);
-        backgroundMusic.setLooping(true);
-
         if(check){
             gameMusic.setVolume(0.5f,0.5f);
             backgroundMusic.setVolume(0.05f,0.05f);
@@ -63,7 +63,7 @@ public class Sound{
         },1000);
 
     }
-    public void realese(){
+    public void release(){
         gameMusic.release();
         backgroundMusic.release();
     }
