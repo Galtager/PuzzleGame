@@ -38,6 +38,29 @@ public class GameActivity9 extends AppCompatActivity {
     Sound sound=new Sound();
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if (!Sound.gameMusic.isPlaying())
+            sound.switchMusic(Sound.gameMusic,Sound.backgroundMusic);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!Sound.activitySwitchFlag)
+            Sound.gameMusic.pause();
+        else
+            sound.switchMusic(Sound.backgroundMusic,Sound.gameMusic);
+        Sound.activitySwitchFlag = false;
+
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Sound.activitySwitchFlag=true;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         dataBase.setPrefRef("PRESNAME9","PRESSCORE9");
@@ -89,6 +112,7 @@ public class GameActivity9 extends AppCompatActivity {
                     newGame();
                     break;
                 case R.id.bBackMenu9:
+                    Sound.activitySwitchFlag=true;
                     Sound.menuClickSound.start();
                     backMenu();
                     break;
@@ -137,7 +161,6 @@ public class GameActivity9 extends AppCompatActivity {
     }
 
     public void backMenu() {
-        sound.switchMusic(Sound.backgroundMusic, Sound.gameMusic);
         finish();
     }
 

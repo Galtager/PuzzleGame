@@ -18,6 +18,25 @@ public class ChooseDifficultActivity extends AppCompatActivity {
     Sound sound=new Sound();
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        if(!Sound.backFromGame){
+            if(!Sound.backgroundMusic.isPlaying())
+                Sound.backgroundMusic.start();}
+        Sound.backFromGame=false;
+
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!Sound.activitySwitchFlag)
+            Sound.backgroundMusic.pause();
+        Sound.activitySwitchFlag = false;
+
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_difficult);
@@ -73,6 +92,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.btn1:
                     Sound.menuClickSound.start();
+                    Sound.activitySwitchFlag=true;
                     sound.switchMusic(sound.gameMusic,sound.backgroundMusic);
                     newGame(3);
                     break;
@@ -110,6 +130,8 @@ public class ChooseDifficultActivity extends AppCompatActivity {
                 gameChooserIntent = new Intent(ChooseDifficultActivity.this, GameActivity24.class);
                 break;
         }
+        Sound.activitySwitchFlag=true;
+        Sound.backFromGame=true;
         startActivity(gameChooserIntent);
         overridePendingTransition(R.anim.slide_out_left,R.anim.slide_in_right);
     }

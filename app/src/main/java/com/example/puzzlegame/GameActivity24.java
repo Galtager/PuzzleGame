@@ -40,7 +40,28 @@ public class GameActivity24 extends AppCompatActivity {
     DataBase dataBase = new DataBase(this);
     Sound sound=new Sound();
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!Sound.gameMusic.isPlaying())
+            sound.switchMusic(Sound.gameMusic,Sound.backgroundMusic);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!Sound.activitySwitchFlag)
+            Sound.gameMusic.pause();
+        else
+            sound.switchMusic(Sound.backgroundMusic,Sound.gameMusic);
+        Sound.activitySwitchFlag = false;
+
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Sound.activitySwitchFlag=true;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,6 +114,7 @@ public class GameActivity24 extends AppCompatActivity {
                     newGame();
                     break;
                 case R.id.bBackMenu24:
+                    Sound.activitySwitchFlag=true;
                     Sound.menuClickSound.start();
                     backMenu();
                     break;
@@ -142,7 +164,6 @@ public class GameActivity24 extends AppCompatActivity {
 
 
     public void backMenu() {
-        sound.switchMusic(Sound.backgroundMusic,Sound.gameMusic);
         finish();
     }
 

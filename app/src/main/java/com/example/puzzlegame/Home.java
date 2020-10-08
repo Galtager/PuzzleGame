@@ -34,16 +34,38 @@ public class Home extends AppCompatActivity {
     Sound sound=new Sound();
     String tempLang = "";
     Dialog dialog;
+    boolean finish = false;
 
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        sound.release();
+        finish =true;
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!Sound.backgroundMusic.isPlaying())
+            Sound.backgroundMusic.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(!Sound.activitySwitchFlag)
+            if(!finish)
+                Sound.backgroundMusic.pause();
+        Sound.activitySwitchFlag = false;
+        finish=false;
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        sound.createSound(Home.this);
-
 
         Button startButton = findViewById(R.id.start_button);
         Button settingbutton = findViewById(R.id.setting_button);
@@ -109,10 +131,12 @@ public class Home extends AppCompatActivity {
                     Sound.menuClickSound.start();
                     Intent chooseDifficultIntent = new Intent(Home.this, ChooseDifficultActivity.class);
                     startActivity(chooseDifficultIntent);
+                    Sound.activitySwitchFlag=true;
                     overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
                     break;
                 case R.id.highscore_button:
                     Sound.menuClickSound.start();
+                    Sound.activitySwitchFlag=true;
                     Intent leaderBoardIntent = new Intent(Home.this,ViewPager.class);
                     startActivity(leaderBoardIntent);
                     overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
@@ -186,7 +210,7 @@ public class Home extends AppCompatActivity {
     {
         finish();
         startActivity(getIntent());
-        Sound.backgroundMusic.release();
+        Sound.activitySwitchFlag=true;
 
     }
 
