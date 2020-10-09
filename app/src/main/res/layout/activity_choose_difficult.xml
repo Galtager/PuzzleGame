@@ -117,14 +117,6 @@
             android:id="@+id/doctorImage"
             android:src="@drawable/animated_charc"
             android:layout_alignParentBottom="true"/>
-        <ImageButton
-            android:id="@+id/howToPlayBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/info"
-            android:background="@android:color/transparent"
-            android:layout_alignParentBottom="true"
-            android:contentDescription="@string/information" />
+
     </RelativeLayout>
 </LinearLayout>
