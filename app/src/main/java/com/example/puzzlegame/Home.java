@@ -66,7 +66,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        final ImageButton infoBtn = findViewById(R.id.howToPlayBtn);
+
         Button startButton = findViewById(R.id.start_button);
         Button settingbutton = findViewById(R.id.setting_button);
         Button leaderBoard = findViewById(R.id.highscore_button);
@@ -88,10 +88,7 @@ public class Home extends AppCompatActivity {
                 .duration(3000)
                 .repeat(2)
                 .playOn(startButton);
-        YoYo.with(Techniques.Pulse)
-                .duration(3000)
-                .repeat(6)
-                .playOn(infoBtn);
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -100,21 +97,10 @@ public class Home extends AppCompatActivity {
                         .duration(3000)
                         .repeat(0)
                         .playOn(doctorImageHome);
-                infoBtn.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(3000)
-                        .repeat(0)
-                        .playOn(infoBtn);
 
             }
         },1000);
-        infoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Sound.menuClickSound.start();
-                openDialogInfo();
-            }
-        });
+
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -218,19 +204,7 @@ public class Home extends AppCompatActivity {
             }
         }
     };
-    public void openDialogInfo(){
-        final Dialog infoDialog = new Dialog(Home.this);
-        infoDialog.setContentView(R.layout.dialog_info);
-        Button okBtn = infoDialog.findViewById(R.id.gotItButton);
-        infoDialog.show();
-        okBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Sound.buttonGameSound.start();
-                infoDialog.dismiss();
-            }
-        });
-    }
+
     private void setAppLocale(String localeCode){
         Resources resources = getResources();
         DisplayMetrics displayMetrics = resources.getDisplayMetrics();

@@ -45,7 +45,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         Button game15Btn = findViewById(R.id.btn2);
         Button game24Btn = findViewById(R.id.btn3);
 
-
+        ImageButton infoBtn = findViewById(R.id.howToPlayBtn);
         ImageButton backBtn = findViewById(R.id.levelBackMenu);
         soundBtn = findViewById(R.id.bSoundOffOnChoose);
 
@@ -62,6 +62,16 @@ public class ChooseDifficultActivity extends AppCompatActivity {
             soundBtn.setImageResource(R.drawable.soundon);
         else
             soundBtn.setImageResource(R.drawable.soundoff);
+
+
+        infoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Sound.menuClickSound.start();
+                openDialog();
+            }
+        });
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -70,6 +80,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
                         .duration(3000)
                         .repeat(0)
                         .playOn(doctorImage);
+
             }
         },1000);
 
@@ -129,7 +140,19 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         finish();
     }
 
-
+    public void openDialog(){
+        final Dialog infoDialog = new Dialog(ChooseDifficultActivity.this);
+        infoDialog.setContentView(R.layout.dialog_info);
+        Button okBtn = infoDialog.findViewById(R.id.gotItButton);
+        infoDialog.show();
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Sound.buttonGameSound.start();
+                infoDialog.dismiss();
+            }
+        });
+    }
     @Override
     public void finish() {
         super.finish();
