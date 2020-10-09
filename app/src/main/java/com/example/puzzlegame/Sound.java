@@ -4,11 +4,12 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Handler;
 
+
 public class Sound{
     public static  boolean activitySwitchFlag = false;
     public static  boolean backFromGame = false;
     public static MediaPlayer menuClickSound, buttonGameSound,winningSound,backgroundMusic,gameMusic;
-    public static boolean check = true,musiCheck = true;
+    public static boolean check = true;
 
     public Sound(){
     }
@@ -68,6 +69,8 @@ public class Sound{
         winningSound.release();
         buttonGameSound.release();
     }
+
+
 }
 
 

@@ -12,12 +12,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
 import com.google.android.material.chip.Chip;
@@ -26,7 +26,7 @@ import java.util.Locale;
 
 public class Home extends AppCompatActivity {
 
-    private static final String TAG = "State changed";
+
 
 
     SwitchCompat soundSwitch;
@@ -149,8 +149,10 @@ public class Home extends AppCompatActivity {
         dialog = new Dialog(Home.this);
         dialog.setContentView(R.layout.dialog_setting);
         dialog.show();
+
         Chip hebrewChip = dialog.findViewById(R.id.hebrewChip);
         Chip englishChip = dialog.findViewById(R.id.englishChip);
+
         soundSwitch = dialog.findViewById(R.id.sound_switch);
         soundSwitch.setChecked(Sound.check);
         soundSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -190,8 +192,12 @@ public class Home extends AppCompatActivity {
                     sound.setMusic();
                     if(langFlag)
                     {
-                        setAppLocale(tempLang);
-                        restartActivity(Home.this);
+                        if(!Lang.lang.equals(tempLang))
+                        {
+                            Lang.lang=tempLang;
+                            setAppLocale(Lang.lang);
+                            restartActivity();
+                        }
                     }
                     dialog.dismiss();
                     break;
@@ -206,7 +212,8 @@ public class Home extends AppCompatActivity {
         configuration.setLocale(new Locale(localeCode.toLowerCase()));
         resources.updateConfiguration(configuration,displayMetrics);
     }
-    private void restartActivity(Context context)
+
+    private void restartActivity()
     {
         finish();
         startActivity(getIntent());

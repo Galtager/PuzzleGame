@@ -1,6 +1,7 @@
 package com.example.puzzlegame;
 
 import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +12,6 @@ import android.widget.Toast;
 
 import android.graphics.Typeface;
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class GameActivity9 extends AppCompatActivity {
 
@@ -118,6 +118,7 @@ public class GameActivity9 extends AppCompatActivity {
                     break;
                 case R.id.bSoundOffOn9:
                     soundOffOn();
+                    openDialog();
                     Sound.menuClickSound.start();
                     break;
                 default:
@@ -172,7 +173,7 @@ public class GameActivity9 extends AppCompatActivity {
                 button[i][j].setImageResource(CARDS_ID[cards.getValueBoard(i, j)]);
     }
     public void checkFinish(){
-        if(true){
+        if(cards.finished(N, N)){
             showGame();
             Sound.winningSound.start();
             openDialog();
@@ -186,12 +187,11 @@ public class GameActivity9 extends AppCompatActivity {
     private void openDialog() {
         final Dialog dialog = new Dialog(GameActivity9.this);
         dialog.setContentView(R.layout.dialog_finished);
-
-
         Button finishButton = dialog.findViewById(R.id.finishButton);
         final EditText finishName = dialog.findViewById(R.id.finishName);
         TextView finishSteps = dialog.findViewById(R.id.finishSteps);
         finishSteps.setText(numOfSteps +" "+getString(R.string.finished_steps));
+
         dialog.show();
         finishButton.setOnClickListener(new View.OnClickListener() {
             @Override
