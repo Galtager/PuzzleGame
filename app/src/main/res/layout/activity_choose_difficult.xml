@@ -58,6 +58,7 @@
             android:layout_gravity="center"
             android:textColor="@android:color/black"
             android:textSize="30sp"
+            android:visibility="invisible"
             android:paddingBottom="30dp"
             android:fontFamily="@font/baloo"
             android:text="@string/difficulty_levels"
@@ -154,10 +155,14 @@
             android:layout_alignParentBottom="true"/>
         <ImageButton
             android:id="@+id/howToPlayBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/info"
+            android:layout_width="60dp"
+            android:layout_height="80dp"
+            android:visibility="invisible"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_alignParentRight="true"
+            android:scaleType="fitXY"
+            android:src="@drawable/infohome"
             android:background="@android:color/transparent"
             android:layout_alignParentBottom="true"
             android:contentDescription="@string/information" />

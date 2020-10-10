@@ -93,7 +93,7 @@ public class Home extends AppCompatActivity {
 
         YoYo.with(Techniques.Shake)
                 .duration(3000)
-                .repeat(2)
+                .repeat(-1)
                 .playOn(startButton);
 
         new Handler().postDelayed(new Runnable() {
@@ -118,7 +118,7 @@ public class Home extends AppCompatActivity {
                         .playOn( infoBtn);
                 YoYo.with(Techniques.Wave)
                         .duration(3000)
-                        .repeat(20)
+                        .repeat(-1)
                         .playOn(infoBtn);
                 facebook.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.SlideInRight)
@@ -167,17 +167,17 @@ public class Home extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.facebook:
                     Sound.buttonGameSound.start();
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com"));
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/"));
                     startActivity(browserIntent);
                     break;
                 case R.id.instagram:
                     Sound.buttonGameSound.start();
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.instagram.com"));
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.instagram.com/"));
                     startActivity(browserIntent);
                     break;
                 case R.id.github:
                     Sound.buttonGameSound.start();
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Galtager/PuzzleGame"));
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Galtager"));
                     startActivity(browserIntent);
                     break;
                 case R.id.setting_button:

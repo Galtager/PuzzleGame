@@ -33,6 +33,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
     SlicingImage slicingImage = new SlicingImage();
     private ImageView card24, card15, card9;
     private int counter;
+    private ImageButton infoBtn;
     private TextView boardMsg;
 
     @Override
@@ -79,7 +80,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         final TextView puzzelextLevels = findViewById(R.id.Levels);
 
 
-        ImageButton infoBtn = findViewById(R.id.howToPlayBtn);
+        infoBtn = findViewById(R.id.howToPlayBtn);
         ImageButton backBtn = findViewById(R.id.levelBackMenu);
         soundBtn = findViewById(R.id.bSoundOffOnChoose);
 
@@ -130,6 +131,16 @@ public class ChooseDifficultActivity extends AppCompatActivity {
                         .duration(2000)
                         .repeat(0)
                         .playOn(puzzelextLevels);
+                infoBtn.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.FadeIn)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn(infoBtn);
+                YoYo.with(Techniques.Bounce)
+                        .duration(3000)
+                        .repeat(-1)
+                        .playOn(infoBtn);
+
 
 
             }

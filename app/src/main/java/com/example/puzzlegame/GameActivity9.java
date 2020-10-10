@@ -135,7 +135,6 @@ public class GameActivity9 extends AppCompatActivity {
                     break;
                 case R.id.bSoundOffOn9:
                     soundOffOn();
-                    openDialog();
                     Sound.menuClickSound.start();
                     break;
                 case R.id.hint:

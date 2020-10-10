@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">PuzzleIt</string>
     <string name="logo">אזל</string>
-    <string name="developers">מפתחים - גל ,יגאל ,וובה</string>
+    <string name="developers">מפתחים - גל , יגאל , וובה</string>
     <string name="game8">8 פאזל</string>
     <string name="game15">15 פאזל</string>
     <string name="game24">24 פאזל</string>
@@ -65,7 +65,7 @@
     <string name="_5x5">5X5</string>
     <string name="hint">רמז</string>
     <string name="firstMsg">פעם ראשונה ?n\ נסה את לוח 8 לחימום.</string>
-    <string name="secondMsg">אתה מרגיש\n מזל היום? נסה לוח 24</string>
-    <string name="lastMsg">לפני שתנסה לוח 24\n נסה לוח 15 ראשון</string>
+    <string name="secondMsg">אתה מרגיש בר מזל היום?\n נסה לוח 24</string>
+    <string name="lastMsg">לפני שתנסה לוח 24 \n נסה את לוח 15 קודם</string>
 
 </resources>
