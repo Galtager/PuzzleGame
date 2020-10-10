@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -37,20 +41,23 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/Choose"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="46dp"
             android:text="@string/choose"
             android:layout_gravity="center"
             android:textColor="@android:color/black"
-            android:textSize="40sp"
+            android:textSize="30sp"
+            android:visibility="invisible"
             android:fontFamily="@font/baloo" />
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/Levels"
+            android:layout_height="67dp"
             android:layout_gravity="center"
             android:textColor="@android:color/black"
-            android:textSize="40sp"
+            android:textSize="30sp"
             android:paddingBottom="30dp"
             android:fontFamily="@font/baloo"
             android:text="@string/difficulty_levels"
@@ -68,7 +75,7 @@
             android:orientation="vertical"
             android:gravity="center"
             android:paddingBottom="10dp">
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn1"
                 android:text="@string/board_8"
                 android:layout_width="wrap_content"
@@ -124,9 +131,23 @@
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
         android:layoutDirection="ltr">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/boardMsg"
+            android:layout_width="95dp"
+            android:layout_height="76dp"
+            android:layout_above="@+id/doctorImage"
+            android:layout_gravity="center"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="0dp"
+            android:fontFamily="@font/baloo"
+            android:gravity="center"
+            android:text="@string/firstMsg"
+            android:textColor="@android:color/black"
+            android:visibility="invisible"
+            android:textSize="20sp" />
         <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="200dp"
-            android:layout_height="200dp"
+            android:layout_width="173dp"
+            android:layout_height="105dp"
             android:visibility="invisible"
             android:id="@+id/doctorImage"
             android:src="@drawable/animated_charc"
@@ -142,3 +163,44 @@
             android:contentDescription="@string/information" />
     </RelativeLayout>
 </LinearLayout>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/card1515"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:clickable="false"
+        android:layout_marginEnd="-56dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/transparent"
+        android:paddingEnd="15dp"
+        android:src="@drawable/card1515"
+        android:scaleType="fitXY"
+        android:visibility="invisible"
+        android:layout_centerVertical="true"
+        android:alpha="0.4"
+        />
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/card908"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:clickable="false"
+        android:layout_marginEnd="-56dp"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/transparent"
+        android:paddingEnd="15dp"
+        android:src="@drawable/card908"
+        android:scaleType="fitXY"
+        android:visibility="invisible"
+        android:layout_alignParentBottom="true"
+        android:alpha="0.4"/>
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:clickable="false"
+        android:scaleType="fitXY"
+        android:src="@drawable/card2424"
+        android:id="@+id/card2424"
+        android:background="@android:color/transparent"
+        android:visibility="invisible"
+        android:layout_centerHorizontal="true"
+        android:alpha="0.4"/>
+</RelativeLayout>

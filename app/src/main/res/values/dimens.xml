@@ -1,6 +1,6 @@
 <resources>
 
-    <dimen name="button_margin">5dp</dimen>
+    <dimen name="button_margin">3dp</dimen>
 
     <dimen name="button_margin_border">15dp</dimen>
 

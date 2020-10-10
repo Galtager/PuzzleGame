@@ -5,6 +5,10 @@ import androidx.appcompat.widget.SwitchCompat;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.view.animation.AccelerateDecelerateInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.widget.TextView;
+
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -67,13 +71,15 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        final ImageButton infoBtn = this.findViewById(R.id.howToPlayBtn);
         Button startButton = findViewById(R.id.start_button);
         Button settingbutton = findViewById(R.id.setting_button);
         Button leaderBoard = findViewById(R.id.highscore_button);
 
-        ImageButton facebook =findViewById(R.id.facebook);
-        ImageButton instagram =findViewById(R.id.instagram);
-        ImageButton github =findViewById(R.id.github);
+        final ImageButton facebook =findViewById(R.id.facebook);
+        final ImageButton instagram =findViewById(R.id.instagram);
+        final ImageButton github =findViewById(R.id.github);
+        final TextView puzzelText = findViewById(R.id.PuzzelIt);
         final ImageView doctorImageHome = this.findViewById(R.id.doctorImageHome);
         github.setOnClickListener(onClickListener);
         instagram.setOnClickListener(onClickListener);
@@ -98,9 +104,59 @@ public class Home extends AppCompatActivity {
                         .duration(3000)
                         .repeat(0)
                         .playOn(doctorImageHome);
+                puzzelText.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInDown)
+                        .duration(4000)
+                        .interpolate(new AccelerateDecelerateInterpolator())
+                        .interpolate(new BounceInterpolator())
+                        .repeat(0)
+                        .playOn(puzzelText);
+                infoBtn.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.FadeIn)
+                        .duration(5000)
+                        .repeat(0)
+                        .playOn( infoBtn);
+                YoYo.with(Techniques.Wave)
+                        .duration(3000)
+                        .repeat(20)
+                        .playOn(infoBtn);
+                facebook.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInRight)
+                        .duration(1000)
+                        .repeat(0)
+                        .playOn( facebook);
+                YoYo.with(Techniques.RotateIn)
+                        .duration(1000)
+                        .repeat(0)
+                        .playOn( facebook);
+                instagram.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInRight)
+                        .duration(2000)
+                        .repeat(0)
+                        .playOn( instagram);
+                YoYo.with(Techniques.RotateIn)
+                        .duration(2000)
+                        .repeat(0)
+                        .playOn( instagram);
+                github.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInRight)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn( github);
+                YoYo.with(Techniques.RotateIn)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn( github);
 
             }
         },1000);
+        infoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Sound.menuClickSound.start();
+                openDialogHome();
+            }
+        });
 
     }
 
@@ -145,6 +201,49 @@ public class Home extends AppCompatActivity {
             }
         }
     };
+    public void openDialogHome(){
+        final Dialog infoDialog = new Dialog(Home.this);
+        infoDialog.setContentView(R.layout.dialog_info);
+        final Button okBtn = infoDialog.findViewById(R.id.gotItButton);
+        infoDialog.show();
+        final ImageView imageViewCard1=infoDialog.findViewById(R.id.card1);
+        final ImageView imageViewCard2=infoDialog.findViewById(R.id.card2);
+        final ImageView imageViewCard3=infoDialog.findViewById(R.id.card3);
+        final ImageView imageViewCard4=infoDialog.findViewById(R.id.card4);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                imageViewCard1.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInLeft)
+                        .duration(1000)
+                        .repeat(0)
+                        .playOn(imageViewCard1);
+                imageViewCard2.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInRight)
+                        .duration(3000)
+                        .repeat(0)
+                        .playOn(imageViewCard2);
+                imageViewCard3.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.SlideInUp)
+                        .duration(5000)
+                        .repeat(0)
+                        .playOn(imageViewCard3);
+                imageViewCard4.setVisibility(View.VISIBLE);
+                YoYo.with(Techniques.FadeIn)
+                        .duration(7000)
+                        .repeat(0)
+                        .playOn(imageViewCard4);
+            }
+        },1000);
+        okBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Sound.buttonGameSound.start();
+                infoDialog.dismiss();
+            }
+        });
+    }
+
     public void openDialog(){
         langFlag=false;
         dialog = new Dialog(Home.this);
