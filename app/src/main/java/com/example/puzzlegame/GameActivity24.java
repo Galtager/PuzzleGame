@@ -1,6 +1,7 @@
 package com.example.puzzlegame;
 
 import android.app.Dialog;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,7 +25,7 @@ public class GameActivity24 extends AppCompatActivity {
             {R.id.b2420, R.id.b2421, R.id.b2422, R.id.b2423, R.id.b2424},
             {R.id.b2430, R.id.b2431, R.id.b2432, R.id.b2433, R.id.b2434},
             {R.id.b2440, R.id.b2441, R.id.b2442, R.id.b2443, R.id.b2444}};
-    private final int CARD_ID[] = {R.drawable.card2400, R.drawable.card2401, R.drawable.card2402, R.drawable.card2403, R.drawable.card2404,
+    private final int CARDS_ID[] = {R.drawable.card2400, R.drawable.card2401, R.drawable.card2402, R.drawable.card2403, R.drawable.card2404,
             R.drawable.card2405, R.drawable.card2406, R.drawable.card2407, R.drawable.card2408, R.drawable.card2409,
             R.drawable.card2410, R.drawable.card2411, R.drawable.card2412, R.drawable.card2413, R.drawable.card2414,
             R.drawable.card2415, R.drawable.card2416, R.drawable.card2417, R.drawable.card2418, R.drawable.card2419,
@@ -36,6 +37,7 @@ public class GameActivity24 extends AppCompatActivity {
     private int recordSteps;
     private ImageButton soundBtn;;
     private boolean check;
+     private String whatToShow;
 
     DataBase dataBase = new DataBase(this);
     Sound sound=new Sound();
@@ -67,6 +69,7 @@ public class GameActivity24 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dataBase.setPrefRef("PRESNAME24","PRESSCORE24");
         setContentView(R.layout.activity_game24);
+        whatToShow = getIntent().getStringExtra("whatToShow");
 
 
         button = new ImageButton[N][N];
@@ -93,10 +96,24 @@ public class GameActivity24 extends AppCompatActivity {
         scoreTV.setTypeface(digitalFont);
         textRecordTV.setTypeface(digitalFont);
         recordTV.setTypeface(digitalFont);
+        Button hintBtn = findViewById(R.id.hint);
 
+        AnimationDrawable animationDrawable = (AnimationDrawable)hintBtn.getBackground();
+        animationDrawable.setEnterFadeDuration(2000);
+        animationDrawable.setExitFadeDuration(2000);
+        animationDrawable.start();
+
+
+        hintBtn.setOnClickListener(navigateBtnsClickListener);
         backBtn.setOnClickListener(navigateBtnsClickListener);
         newGameBtn.setOnClickListener(navigateBtnsClickListener);
         soundBtn.setOnClickListener(navigateBtnsClickListener);
+
+        if(whatToShow.equals("Zoo"))
+            hintBtn.setVisibility(View.VISIBLE);
+        else
+            hintBtn.setVisibility(View.INVISIBLE);
+
 
         if(Sound.check)
             soundBtn.setImageResource(R.drawable.soundon);
@@ -122,6 +139,10 @@ public class GameActivity24 extends AppCompatActivity {
                     soundOffOn();
                     Sound.menuClickSound.start();
                     break;
+                case R.id.hint:
+                    openHintDialog();
+                    break;
+
                 default:
                     break;
             }
@@ -173,7 +194,13 @@ public class GameActivity24 extends AppCompatActivity {
 
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
-                button[i][j].setImageResource(CARD_ID[cards.getValueBoard(i, j)]);
+                if(whatToShow.equals("Zoo")){
+                    if (cards.getValueBoard(i, j) != 0)
+                        button[i][j].setImageBitmap(SlicingImage.imageChunksStorageList.get(cards.getValueBoard(i, j)));
+                    else
+                        button[i][j].setImageResource(CARDS_ID[cards.getValueBoard(i, j)]);}
+                else
+                    button[i][j].setImageResource(CARDS_ID[cards.getValueBoard(i, j)]);
 
     }
 
@@ -220,7 +247,21 @@ public class GameActivity24 extends AppCompatActivity {
             }
         });
     }
+    private void openHintDialog(){
+        final Dialog dialog = new Dialog(GameActivity24.this);
+        dialog.setContentView(R.layout.dialog_hint);
+        ImageButton hintImageButton = dialog.findViewById(R.id.hintImage);
+        hintImageButton.setImageBitmap(SlicingImage.hint);
+        hintImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
 
+        dialog.show();
+
+    }
     @Override
     public void finish() {
         super.finish();

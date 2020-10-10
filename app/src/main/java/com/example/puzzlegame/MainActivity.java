@@ -35,9 +35,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        sound.createSound(MainActivity.this);
+
+
         Lang.lang = Locale.getDefault().getLanguage();
 
-        sound.createSound(MainActivity.this);
 
         topAnimation= AnimationUtils.loadAnimation(this,R.anim.top_animation);
         bottomAnimation= AnimationUtils.loadAnimation(this,R.anim.bottom_animation);

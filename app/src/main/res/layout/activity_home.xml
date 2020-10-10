@@ -6,19 +6,16 @@
     android:orientation="vertical"
     android:background="@drawable/background"
     tools:context=".Home">
-
          <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
              android:id="@+id/first">
-             <androidx.appcompat.widget.AppCompatTextView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
                 android:text="@string/full_logo"
-                android:visibility="invisible"
-                 android:id="@+id/PuzzelIt"
                 android:textColor="@android:color/black"
                 android:textSize="40sp"
                 android:paddingBottom="30dp"
@@ -30,7 +27,6 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-
             android:layout_centerInParent="true"
             android:id="@+id/second">
             <Button
@@ -56,23 +52,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
-            android:orientation="vertical">
-
-            <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/howToPlayBtn"
-                android:layout_width="28dp"
-                android:layout_height="50dp"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_gravity="center"
-                android:layout_marginEnd="15dp"
-                android:background="@null"
-                android:contentDescription="@string/information"
-                android:scaleType="fitXY"
-                android:src="@drawable/infohome"
-                android:visibility="invisible" />
-
+            android:layout_alignParentLeft="true">
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="200dp"
                 android:visibility="invisible"
@@ -84,45 +64,31 @@
 
     <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_alignParentBottom="true"
             android:layout_alignBottom="@id/second"
         android:id="@+id/last"
             android:paddingBottom="10dp">
-        <androidx.appcompat.widget.AppCompatImageButton
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/facebook"
                 android:background="@android:color/transparent"
                 android:id="@+id/facebook"
-                android:paddingEnd="15dp"
-            android:visibility="invisible"/>
-
-        <androidx.appcompat.widget.AppCompatImageButton
+                android:paddingEnd="15dp"/>
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/instagram"
                 android:background="@android:color/transparent"
                 android:id="@+id/instagram"
-                android:paddingEnd="15dp"
-            android:visibility="invisible"/>
-        <androidx.appcompat.widget.AppCompatImageButton
+                android:paddingEnd="15dp"/>
+            <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/github"
                 android:id="@+id/github"
-                android:background="@android:color/transparent"
-            android:visibility="invisible"/>
+                android:background="@android:color/transparent"/>
     </LinearLayout>
-<!--            <androidx.appcompat.widget.AppCompatImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/github"
-                android:id="@+id/github"
-                android:background="@android:color/transparent"
-            android:visibility="invisible"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"/>-->
-
     </RelativeLayout>
