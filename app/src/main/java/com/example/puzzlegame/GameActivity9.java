@@ -1,7 +1,7 @@
 package com.example.puzzlegame;
 
 import android.app.Dialog;
-import android.graphics.drawable.AnimationDrawable;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +18,6 @@ public class GameActivity9 extends AppCompatActivity {
 
     private final int N = 3;
     Cards cards;
-
     private ImageButton[][] button;
     private final int BUTTON_ID[][] = {{R.id.b900, R.id.b901, R.id.b902},
             {R.id.b910, R.id.b911, R.id.b912},
@@ -27,7 +26,7 @@ public class GameActivity9 extends AppCompatActivity {
             R.drawable.card903, R.drawable.card904, R.drawable.card905,
             R.drawable.card906, R.drawable.card907, R.drawable.card908};
 
-    private String whatToShow;
+
     private TextView scoreTV;
     private int numOfSteps;
     private TextView recordTV;
@@ -67,8 +66,6 @@ public class GameActivity9 extends AppCompatActivity {
         dataBase.setPrefRef("PRESNAME9","PRESSCORE9");
         setContentView(R.layout.activity_game9);
 
-        whatToShow = getIntent().getStringExtra("whatToShow");
-
 
         button = new ImageButton[N][N];
         for(int i = 0; i < N; i++)
@@ -87,13 +84,6 @@ public class GameActivity9 extends AppCompatActivity {
         scoreTV = findViewById(R.id.tScore9);
         TextView textRecordTV = findViewById(R.id.tBestSScore9);
         recordTV =findViewById(R.id.tBestScore9);
-        Button hintBtn = findViewById(R.id.hint);
-
-        AnimationDrawable animationDrawable = (AnimationDrawable)hintBtn.getBackground();
-        animationDrawable.setEnterFadeDuration(2000);
-        animationDrawable.setExitFadeDuration(2000);
-        animationDrawable.start();
-
 
         titleTV.setTypeface(digitalFont);
         textScoreTV.setTypeface(digitalFont);
@@ -101,15 +91,9 @@ public class GameActivity9 extends AppCompatActivity {
         textRecordTV.setTypeface(digitalFont);
         recordTV.setTypeface(digitalFont);
 
-        hintBtn.setOnClickListener(navigateBtnsClickListener);
         newGameBtn.setOnClickListener(navigateBtnsClickListener);
         backBtn.setOnClickListener(navigateBtnsClickListener);
         soundBtn.setOnClickListener(navigateBtnsClickListener);
-
-        if(whatToShow.equals("Zoo"))
-            hintBtn.setVisibility(View.VISIBLE);
-        else
-            hintBtn.setVisibility(View.INVISIBLE);
 
         if(Sound.check)
             soundBtn.setImageResource(R.drawable.soundon);
@@ -119,7 +103,6 @@ public class GameActivity9 extends AppCompatActivity {
         newGame();
 
     }
-
     View.OnClickListener navigateBtnsClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -138,10 +121,6 @@ public class GameActivity9 extends AppCompatActivity {
                     openDialog();
                     Sound.menuClickSound.start();
                     break;
-                case R.id.hint:
-                    openHintDialog();
-                    break;
-
                 default:
                     break;
             }
@@ -188,20 +167,11 @@ public class GameActivity9 extends AppCompatActivity {
 
     public void showGame() {
         scoreTV.setText(Integer.toString(numOfSteps));
+
         for(int i = 0; i < N; i++)
-            for(int j = 0; j < N; j++) {
-                if(whatToShow.equals("Zoo")){
-                    if (cards.getValueBoard(i, j) != 0)
-                        button[i][j].setImageBitmap(SlicingImage.imageChunksStorageList.get(cards.getValueBoard(i, j)));
-                    else
-                        button[i][j].setImageResource(CARDS_ID[cards.getValueBoard(i, j)]);}
-                else
+            for(int j = 0; j < N; j++)
                 button[i][j].setImageResource(CARDS_ID[cards.getValueBoard(i, j)]);
-
-            }
-
     }
-
     public void checkFinish(){
         if(cards.finished(N, N)){
             showGame();
@@ -247,21 +217,7 @@ public class GameActivity9 extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
 
     }
-    private void openHintDialog(){
-        final Dialog dialog = new Dialog(GameActivity9.this);
-        dialog.setContentView(R.layout.dialog_hint);
-        ImageButton imageButton = dialog.findViewById(R.id.hintImage);
-        imageButton.setImageBitmap(SlicingImage.hint);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
 
-        dialog.show();
-
-    }
     public void soundOffOn(){
         if(Sound.check)
         {
@@ -275,8 +231,4 @@ public class GameActivity9 extends AppCompatActivity {
         }
         sound.setSounds();
         sound.setMusic();
-    }
-
-
-}
-
+    }}

@@ -1,7 +1,6 @@
 package com.example.puzzlegame;
 
 import android.app.Dialog;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,7 +21,7 @@ public class GameActivity15 extends AppCompatActivity {
             {R.id.b1510, R.id.b1511, R.id.b1512, R.id.b1513},
             {R.id.b1520, R.id.b1521, R.id.b1522, R.id.b1523},
             {R.id.b1530, R.id.b1531, R.id.b1532, R.id.b1533}};
-    private final int CARDS_ID[] = {R.drawable.card1500, R.drawable.card1501, R.drawable.card1502, R.drawable.card1503,
+    private final int CADRS_ID[] = {R.drawable.card1500, R.drawable.card1501, R.drawable.card1502, R.drawable.card1503,
             R.drawable.card1504, R.drawable.card1505, R.drawable.card1506, R.drawable.card1507,
             R.drawable.card1508, R.drawable.card1509, R.drawable.card1510, R.drawable.card1511,
             R.drawable.card1512, R.drawable.card1513, R.drawable.card1514, R.drawable.card1515};
@@ -33,7 +32,6 @@ public class GameActivity15 extends AppCompatActivity {
     private int recordSteps;
     private ImageButton soundBtn;;
     private boolean check;
-    private String whatToShow;
 
     DataBase dataBase = new DataBase(this);
     Sound sound=new Sound();
@@ -65,8 +63,6 @@ public class GameActivity15 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         dataBase.setPrefRef("PRESNAME15","PRESSCORE15");
         setContentView(R.layout.activity_game15);
-        whatToShow = getIntent().getStringExtra("whatToShow");
-
 
 
         button = new ImageButton[N][N];
@@ -94,22 +90,11 @@ public class GameActivity15 extends AppCompatActivity {
         scoreTV.setTypeface(digitalFont);
         textRecordTV.setTypeface(digitalFont);
         recordTV.setTypeface(digitalFont);
-        Button hintBtn = findViewById(R.id.hint);
 
-        AnimationDrawable animationDrawable = (AnimationDrawable)hintBtn.getBackground();
-        animationDrawable.setEnterFadeDuration(2000);
-        animationDrawable.setExitFadeDuration(2000);
-        animationDrawable.start();
 
-        hintBtn.setOnClickListener(navigateBtnsClickListener);
         newGameBtn.setOnClickListener(navigateBtnsClickListener);
         backBtn.setOnClickListener(navigateBtnsClickListener);
         soundBtn.setOnClickListener(navigateBtnsClickListener);
-
-        if(whatToShow.equals("Zoo"))
-            hintBtn.setVisibility(View.VISIBLE);
-        else
-            hintBtn.setVisibility(View.INVISIBLE);
 
         if(Sound.check)
             soundBtn.setImageResource(R.drawable.soundon);
@@ -134,9 +119,6 @@ public class GameActivity15 extends AppCompatActivity {
                 case R.id.bSoundOffOn15:
                     soundOffOn();
                     Sound.menuClickSound.start();
-                    break;
-                case R.id.hint:
-                    openHintDialog();
                     break;
                 default:
                     break;
@@ -187,13 +169,7 @@ public class GameActivity15 extends AppCompatActivity {
 
         for(int i = 0; i < N; i++)
             for(int j = 0; j < N; j++)
-                if(whatToShow.equals("Zoo")){
-                    if (cards.getValueBoard(i, j) != 0)
-                        button[i][j].setImageBitmap(SlicingImage.imageChunksStorageList.get(cards.getValueBoard(i, j)));
-                    else
-                        button[i][j].setImageResource(CARDS_ID[cards.getValueBoard(i, j)]);}
-                else
-                    button[i][j].setImageResource(CARDS_ID[cards.getValueBoard(i, j)]);
+                button[i][j].setImageResource(CADRS_ID[cards.getValueBoard(i, j)]);
     }
 
     public void checkFinish(){
@@ -236,22 +212,6 @@ public class GameActivity15 extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void openHintDialog(){
-        final Dialog dialog = new Dialog(GameActivity15.this);
-        dialog.setContentView(R.layout.dialog_hint);
-        ImageButton imageButton = dialog.findViewById(R.id.hintImage);
-        imageButton.setImageBitmap(SlicingImage.hint);
-        imageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-
     }
 
     @Override
