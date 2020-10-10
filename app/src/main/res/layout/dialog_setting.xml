@@ -28,6 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        app:selectionRequired="true"
         android:layout_gravity="center"
         android:id="@+id/languageChipGroup"
         android:theme="@style/Theme.MaterialComponents.Light"
@@ -36,6 +37,9 @@
             style="@style/Widget.MaterialComponents.Chip.Action"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:checkable="true"
+            android:focusable="true"
             android:text="@string/hebrew"
             android:id="@+id/hebrewChip"
             android:background="@android:color/white"
@@ -46,6 +50,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/english"
+            android:clickable="true"
+            android:checkable="true"
+            android:focusable="true"
             android:id="@+id/englishChip"
             app:chipIcon="@drawable/us"/>
 
