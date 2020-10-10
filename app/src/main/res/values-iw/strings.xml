@@ -58,10 +58,7 @@
     <string name="name">שם</string>
     <string name="score">תוצאה</string>
     <string name="empty">ריק</string>
-    <string name="zoo">גן חיות</string>
-    <string name="playZoo">התחל לשחק</string>
-    <string name="_3x3">3X3</string>
-    <string name="_4x4">4X4</string>
-    <string name="_5x5">5X5</string>
-    <string name="hint">רמז</string>
+    <string name="firstMsg">פעם ראשונה ?n\ נסה את לוח 8 לחימום.</string>
+    <string name="secondMsg">אתה מרגיש\n מזל היום? נסה לוח 24</string>
+    <string name="lastMsg">לפני שתנסה לוח 24\n נסה לוח 15 ראשון</string>
 </resources>
