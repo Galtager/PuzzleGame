@@ -50,4 +50,10 @@
     <string name="name">Name</string>
     <string name="score">Score</string>
     <string name="empty">Empty</string>
+    <string name="zoo">Zoo</string>
+    <string name="playZoo">Play</string>
+    <string name="_3x3">3X3</string>
+    <string name="_4x4">4X4</string>
+    <string name="_5x5">5X5</string>
+    <string name="hint">Hint</string>
 </resources>

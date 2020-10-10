@@ -82,6 +82,7 @@ public class Home extends AppCompatActivity {
         startButton.setOnClickListener(onClickListener);
         leaderBoard.setOnClickListener(onClickListener);
 
+
         Sound.backgroundMusic.start();
 
         YoYo.with(Techniques.Shake)
