@@ -10,12 +10,12 @@
         android:supportsRtl="true"
         android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
-        <activity android:name=".ViewPager" />
+        <activity android:name=".ViewPager.ViewPager" />
         <activity android:name=".GameActivity24" />
         <activity android:name=".GameActivity15" />
         <activity android:name=".GameActivity9" />
         <activity android:name=".ChooseDifficultActivity" />
-        <activity android:name=".Home" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

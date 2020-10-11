@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
+import com.example.puzzlegame.Class.Lang;
+import com.example.puzzlegame.Class.Sound;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private static int TIME_OUT = 4000;
 
     Animation topAnimation,bottomAnimation,middleAnimation;
     View line1,line2,line3,line4,line5,line6;
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         logo.setAnimation(middleAnimation);
 
         signture.setAnimation(bottomAnimation);
+        int TIME_OUT = 4000;
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -74,15 +75,15 @@ public class MainActivity extends AppCompatActivity {
                         .repeat(1)
                         .playOn(startLogo);
             }
-        },TIME_OUT/2);
+        }, TIME_OUT /2);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this,Home.class);
+                Intent intent = new Intent(MainActivity.this, HomeActivity.class);
                 startActivity(intent);
                 finish();
             }
-        },TIME_OUT);
+        }, TIME_OUT);
 
 
 

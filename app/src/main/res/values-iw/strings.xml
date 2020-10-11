@@ -67,5 +67,6 @@
     <string name="firstMsg">פעם ראשונה ?n\ נסה את לוח 8 לחימום.</string>
     <string name="secondMsg">אתה מרגיש בר מזל היום?\n נסה לוח 24</string>
     <string name="lastMsg">לפני שתנסה לוח 24 \n נסה את לוח 15 קודם</string>
+    <string name="choose_puzzle">בחר פאזל</string>
 
 </resources>

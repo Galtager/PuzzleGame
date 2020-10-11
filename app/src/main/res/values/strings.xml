@@ -59,5 +59,6 @@
     <string name="firstMsg">First time ?\nTry 8 Board\nfor a warm up.</string>
     <string name="secondMsg">do you feel\nluck today?\ntry 24 board</string>
     <string name="lastMsg">before trying 24 board\ntry first 15 Board</string>
+    <string name="choose_puzzle">Choose Puzzle</string>
 
 </resources>

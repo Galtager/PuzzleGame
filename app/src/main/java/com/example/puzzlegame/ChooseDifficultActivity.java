@@ -1,5 +1,6 @@
 package com.example.puzzlegame;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,7 +21,8 @@ import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.material.chip.Chip;
+import com.example.puzzlegame.Class.SlicingImage;
+import com.example.puzzlegame.Class.Sound;
 import com.google.android.material.chip.ChipGroup;
 
 
@@ -158,17 +160,17 @@ public class ChooseDifficultActivity extends AppCompatActivity {
                 case R.id.btn1:
                     Sound.menuClickSound.start();
                     Sound.activitySwitchFlag = true;
-                    sound.switchMusic(sound.gameMusic, sound.backgroundMusic);
+                    sound.switchMusic(Sound.gameMusic, Sound.backgroundMusic);
                     newGame(3, "Cards");
                     break;
                 case R.id.btn2:
                     Sound.menuClickSound.start();
-                    sound.switchMusic(sound.gameMusic, sound.backgroundMusic);
+                    sound.switchMusic(Sound.gameMusic, Sound.backgroundMusic);
                     newGame(4, "Cards");
                     break;
                 case R.id.btn3:
                     Sound.menuClickSound.start();
-                    sound.switchMusic(sound.gameMusic, sound.backgroundMusic);
+                    sound.switchMusic(Sound.gameMusic, Sound.backgroundMusic);
                     newGame(5, "Cards");
                     break;
                 case R.id.btn4:
@@ -260,6 +262,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         });
     }
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     private void openZooDialog() {
         final Dialog zooDialog = new Dialog(ChooseDifficultActivity.this);
         zooDialog.setContentView(R.layout.dialog_zoo);
@@ -321,6 +324,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
     }
 
     View.OnClickListener zooClickListener = new View.OnClickListener() {
+        @SuppressLint("UseCompatLoadingForDrawables")
         @Override
         public void onClick(View v) {
             int i = 0;

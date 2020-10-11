@@ -18,7 +18,7 @@
         android:textSize="30sp"
         android:textColor="@android:color/black"
         android:fontFamily="@font/baloo"
-        android:text="Choose Puzzle"/>
+        android:text="@string/choose_puzzle"/>
     <com.google.android.material.chip.ChipGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -124,7 +124,6 @@
                 android:src="@drawable/elephant"
                 android:layout_column="1"
                 style="@style/gridBGameStyle9"/>
-                />
         </GridLayout>
     </ScrollView>
 

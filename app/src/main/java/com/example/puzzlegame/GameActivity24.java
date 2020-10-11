@@ -13,6 +13,11 @@ import android.graphics.Typeface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.puzzlegame.Class.Cards;
+import com.example.puzzlegame.Class.DataBase;
+import com.example.puzzlegame.Class.SlicingImage;
+import com.example.puzzlegame.Class.Sound;
+
 
 public class GameActivity24 extends AppCompatActivity {
 
@@ -20,12 +25,12 @@ public class GameActivity24 extends AppCompatActivity {
     private final int N = 5;
     Cards cards;
     private ImageButton[][] button;
-    private final int BUT_ID[][] = {{R.id.b2400, R.id.b2401, R.id.b2402, R.id.b2403, R.id.b2404},
+    private final int[][] BUT_ID = {{R.id.b2400, R.id.b2401, R.id.b2402, R.id.b2403, R.id.b2404},
             {R.id.b2410, R.id.b2411, R.id.b2412, R.id.b2413, R.id.b2414},
             {R.id.b2420, R.id.b2421, R.id.b2422, R.id.b2423, R.id.b2424},
             {R.id.b2430, R.id.b2431, R.id.b2432, R.id.b2433, R.id.b2434},
             {R.id.b2440, R.id.b2441, R.id.b2442, R.id.b2443, R.id.b2444}};
-    private final int CARDS_ID[] = {R.drawable.card2400, R.drawable.card2401, R.drawable.card2402, R.drawable.card2403, R.drawable.card2404,
+    private final int[] CARDS_ID = {R.drawable.card2400, R.drawable.card2401, R.drawable.card2402, R.drawable.card2403, R.drawable.card2404,
             R.drawable.card2405, R.drawable.card2406, R.drawable.card2407, R.drawable.card2408, R.drawable.card2409,
             R.drawable.card2410, R.drawable.card2411, R.drawable.card2412, R.drawable.card2413, R.drawable.card2414,
             R.drawable.card2415, R.drawable.card2416, R.drawable.card2417, R.drawable.card2418, R.drawable.card2419,
@@ -35,7 +40,7 @@ public class GameActivity24 extends AppCompatActivity {
     private int numOfSteps;
     private TextView recordTV;
     private int recordSteps;
-    private ImageButton soundBtn;;
+    private ImageButton soundBtn;
     private boolean check;
      private String whatToShow;
 
@@ -235,7 +240,7 @@ public class GameActivity24 extends AppCompatActivity {
                 if(numOfScores>=10) {
                     checkPlace = dataBase.checkIfScoreIsBest("PRESSCORE24", numOfSteps);
                     if (checkPlace!=(-1)) {
-                        dataBase.changeValues(finishName.getText().toString(),numOfSteps,3,checkPlace);
+                        dataBase.changeValues(finishName.getText().toString(),numOfSteps,checkPlace);
                     }
                 }
                 else

@@ -13,16 +13,21 @@ import android.graphics.Typeface;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.puzzlegame.Class.Cards;
+import com.example.puzzlegame.Class.DataBase;
+import com.example.puzzlegame.Class.SlicingImage;
+import com.example.puzzlegame.Class.Sound;
+
 public class GameActivity15 extends AppCompatActivity {
 
     private final int N = 4;
     Cards cards;
     private ImageButton[][] button;
-    private final int BUTTON_ID[][] = {{R.id.b1500, R.id.b1501, R.id.b1502, R.id.b1503},
+    private final int[][] BUTTON_ID = {{R.id.b1500, R.id.b1501, R.id.b1502, R.id.b1503},
             {R.id.b1510, R.id.b1511, R.id.b1512, R.id.b1513},
             {R.id.b1520, R.id.b1521, R.id.b1522, R.id.b1523},
             {R.id.b1530, R.id.b1531, R.id.b1532, R.id.b1533}};
-    private final int CARDS_ID[] = {R.drawable.card1500, R.drawable.card1501, R.drawable.card1502, R.drawable.card1503,
+    private final int[] CARDS_ID = {R.drawable.card1500, R.drawable.card1501, R.drawable.card1502, R.drawable.card1503,
             R.drawable.card1504, R.drawable.card1505, R.drawable.card1506, R.drawable.card1507,
             R.drawable.card1508, R.drawable.card1509, R.drawable.card1510, R.drawable.card1511,
             R.drawable.card1512, R.drawable.card1513, R.drawable.card1514, R.drawable.card1515};
@@ -31,7 +36,7 @@ public class GameActivity15 extends AppCompatActivity {
     private int numOfSteps;
     private TextView recordTV;
     private int recordSteps;
-    private ImageButton soundBtn;;
+    private ImageButton soundBtn;
     private boolean check;
     private String whatToShow;
 
@@ -226,7 +231,7 @@ public class GameActivity15 extends AppCompatActivity {
                 if(numOfScores>=10) {
                     checkPlace = dataBase.checkIfScoreIsBest("PRESSCORE15", numOfSteps);
                     if (checkPlace!=(-1)) {
-                        dataBase.changeValues(finishName.getText().toString(),numOfSteps,2,checkPlace);
+                        dataBase.changeValues(finishName.getText().toString(),numOfSteps,checkPlace);
                     }
                 }
                 else

@@ -13,6 +13,11 @@ import android.widget.Toast;
 import android.graphics.Typeface;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.puzzlegame.Class.Cards;
+import com.example.puzzlegame.Class.DataBase;
+import com.example.puzzlegame.Class.SlicingImage;
+import com.example.puzzlegame.Class.Sound;
+
 public class GameActivity9 extends AppCompatActivity {
 
 
@@ -20,10 +25,10 @@ public class GameActivity9 extends AppCompatActivity {
     Cards cards;
 
     private ImageButton[][] button;
-    private final int BUTTON_ID[][] = {{R.id.b900, R.id.b901, R.id.b902},
+    private final int[][] BUTTON_ID = {{R.id.b900, R.id.b901, R.id.b902},
             {R.id.b910, R.id.b911, R.id.b912},
             {R.id.b920, R.id.b921, R.id.b922}};
-    private final int CARDS_ID[] = {R.drawable.card900, R.drawable.card901, R.drawable.card902,
+    private final int[] CARDS_ID = {R.drawable.card900, R.drawable.card901, R.drawable.card902,
             R.drawable.card903, R.drawable.card904, R.drawable.card905,
             R.drawable.card906, R.drawable.card907, R.drawable.card908};
 
@@ -32,7 +37,7 @@ public class GameActivity9 extends AppCompatActivity {
     private int numOfSteps;
     private TextView recordTV;
     private int recordSteps;
-    private ImageButton soundBtn;;
+    private ImageButton soundBtn;
     private boolean check;
 
     DataBase dataBase = new DataBase(this);
@@ -231,7 +236,7 @@ public class GameActivity9 extends AppCompatActivity {
                 if(numOfScores>=10) {
                     checkPlace = dataBase.checkIfScoreIsBest("PRESSCORE9", numOfSteps);
                     if (checkPlace!=(-1)) {
-                        dataBase.changeValues(finishName.getText().toString(),numOfSteps,1,checkPlace);
+                        dataBase.changeValues(finishName.getText().toString(),numOfSteps,checkPlace);
                     }
                 }
                 else
