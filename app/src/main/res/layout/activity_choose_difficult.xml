@@ -132,27 +132,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="20dp"
         android:layoutDirection="ltr">
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/boardMsg"
-            android:layout_width="95dp"
-            android:layout_height="76dp"
-            android:layout_above="@+id/doctorImage"
-            android:layout_gravity="center"
-            android:layout_marginStart="40dp"
-            android:layout_marginBottom="0dp"
-            android:fontFamily="@font/baloo"
-            android:gravity="center"
-            android:text="@string/firstMsg"
-            android:textColor="@android:color/black"
-            android:visibility="invisible"
-            android:textSize="10sp" />
-        <androidx.appcompat.widget.AppCompatImageView
-            android:layout_width="173dp"
-            android:layout_height="105dp"
-            android:visibility="invisible"
-            android:id="@+id/doctorImage"
-            android:src="@drawable/animated_charc"
-            android:layout_alignParentBottom="true"/>
         <ImageButton
             android:id="@+id/howToPlayBtn"
             android:layout_width="60dp"

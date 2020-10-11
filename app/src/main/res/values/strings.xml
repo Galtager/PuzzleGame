@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PuzzleIt</string>
     <string name="logo">uzzle</string>
-    <string name="developers">developers - Gal , Igal , Vova</string>
+    <string name="developers">developer - Gal Tager</string>
     <string name="game8">8 puzzle</string>
     <string name="game15">15 puzzle</string>
     <string name="game24">24 puzzle</string>

@@ -82,7 +82,6 @@ public class HomeActivity extends AppCompatActivity {
         final ImageButton instagram =findViewById(R.id.instagram);
         final ImageButton github =findViewById(R.id.github);
         final TextView puzzelText = findViewById(R.id.PuzzelIt);
-        final ImageView doctorImageHome = this.findViewById(R.id.doctorImageHome);
         github.setOnClickListener(onClickListener);
         instagram.setOnClickListener(onClickListener);
         facebook.setOnClickListener(onClickListener);
@@ -101,11 +100,6 @@ public class HomeActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                doctorImageHome.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(3000)
-                        .repeat(0)
-                        .playOn(doctorImageHome);
                 puzzelText.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.SlideInDown)
                         .duration(4000)
@@ -113,15 +107,6 @@ public class HomeActivity extends AppCompatActivity {
                         .interpolate(new BounceInterpolator())
                         .repeat(0)
                         .playOn(puzzelText);
-                infoBtn.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(5000)
-                        .repeat(0)
-                        .playOn( infoBtn);
-                YoYo.with(Techniques.Wave)
-                        .duration(3000)
-                        .repeat(-1)
-                        .playOn(infoBtn);
                 facebook.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.SlideInRight)
                         .duration(1000)
@@ -152,14 +137,6 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         },1000);
-        infoBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Sound.menuClickSound.start();
-                openDialogHome();
-            }
-        });
-
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -169,12 +146,12 @@ public class HomeActivity extends AppCompatActivity {
             switch (v.getId()) {
                 case R.id.facebook:
                     Sound.buttonGameSound.start();
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/"));
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.facebook.com/gal.tager"));
                     startActivity(browserIntent);
                     break;
                 case R.id.instagram:
                     Sound.buttonGameSound.start();
-                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.instagram.com/"));
+                    browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.instagram.com/tager_gal/"));
                     startActivity(browserIntent);
                     break;
                 case R.id.github:

@@ -2,7 +2,7 @@
 <resources>
     <string name="app_name">PuzzleIt</string>
     <string name="logo">אזל</string>
-    <string name="developers">מפתחים - גל , יגאל , וובה</string>
+    <string name="developers">מפתח - גל תגר</string>
     <string name="game8">8 פאזל</string>
     <string name="game15">15 פאזל</string>
     <string name="game24">24 פאזל</string>

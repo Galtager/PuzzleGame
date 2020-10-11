@@ -34,9 +34,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
     Drawable imageChoose;
     SlicingImage slicingImage = new SlicingImage();
     private ImageView card24, card15, card9;
-    private int counter;
     private ImageButton infoBtn;
-    private TextView boardMsg;
 
     @Override
     protected void onStart() {
@@ -64,9 +62,7 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_difficult);
 
-        counter = 3;
 
-        boardMsg = findViewById(R.id.boardMsg);
 
         Button game9Btn = findViewById(R.id.btn1);
         Button game15Btn = findViewById(R.id.btn2);
@@ -91,7 +87,6 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         card24 = findViewById(R.id.card2424);
 
 
-        final ImageView doctorImage = findViewById(R.id.doctorImage);
 
         game9Btn.setOnClickListener(onClickListener);
         game15Btn.setOnClickListener(onClickListener);
@@ -118,11 +113,6 @@ public class ChooseDifficultActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                doctorImage.setVisibility(View.VISIBLE);
-                YoYo.with(Techniques.FadeIn)
-                        .duration(3000)
-                        .repeat(0)
-                        .playOn(doctorImage);
                 puzzelTextChoose.setVisibility(View.VISIBLE);
                 YoYo.with(Techniques.SlideInRight)
                         .duration(2000)
@@ -148,8 +138,6 @@ public class ChooseDifficultActivity extends AppCompatActivity {
             }
         }, 1000);
         play24();
-        playMsg();
-
     }
 
     View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -354,45 +342,6 @@ public class ChooseDifficultActivity extends AppCompatActivity {
     }
 
 
-    private void playMsg() {
-        boardMsg.setVisibility(View.VISIBLE);
-        YoYo.with(Techniques.FadeIn)
-                .duration(10000)
-                .repeat(0)
-                .withListener(new Animator.AnimatorListener() {
-                    @Override
-                    public void onAnimationStart(Animator animator) {
-                        if (counter == 1) {
-                            boardMsg.setText(R.string.secondMsg);
-                            counter = 2;
-                        } else if (counter == 2) {
-                            boardMsg.setText(R.string.lastMsg);
-
-                            counter = 3;
-                        } else if (counter == 3) {
-                            boardMsg.setText(R.string.firstMsg);
-                            counter = 1;
-                        }
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animator animator) {
-                        boardMsg.setVisibility(View.INVISIBLE);
-                        playMsg();
-                    }
-
-                    @Override
-                    public void onAnimationCancel(Animator animator) {
-
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animator animator) {
-
-                    }
-                })
-                .playOn(boardMsg);
-    }
     private void play9() {
         new Handler().postDelayed(new Runnable() {
             @Override
