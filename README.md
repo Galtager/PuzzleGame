@@ -4,6 +4,8 @@ A Nice project made for Android course in my b.s.c studies(Computer sience) in H
 
 A Styled puzzle game in android studio , very nice UI desing with animations.
 
+You can watch the full app video [Here!](https://www.youtube.com/watch?v=cUmOqlavEpc&t=43s)
+
 A nice sound aroound all the game with an option to mute in all activities.
 
 <img src="/homeanimationGIT.gif" width="250" height="400"/>
