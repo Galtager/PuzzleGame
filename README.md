@@ -1,6 +1,6 @@
 # PuzzleGame
 A Styled puzzle game in android studio.
-
+![](homeanimationGIT.gif)
 A very nice UI desing with animations.
 
 The game support in 2 different languages ( hebrew and english ) by a clickץ
