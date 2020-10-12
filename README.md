@@ -14,7 +14,7 @@ The game support in 2 different languages ( hebrew and english ) by a click
 
 A miltiple choice in the game , between cards and animals puzzle.
 
-<img src="/difficultGIF.gif" width="250" height="400"/><img src="/animalsGIF.gif" width="250" height="400"/><img src="/cardsGame.jpeg" width="250" height="400"/>
+<img src="/difficultGIF.gif" width="250" height="400"/><img src="/cardsGame.jpeg" width="250" height="400"/><img src="/animalsGIF.gif" width="250" height="400"/>
 
 
 A leaderboard saved in the physical memory on your device for saving 10 best score.
