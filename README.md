@@ -1,12 +1,12 @@
 # PuzzleGame
 
-A Nice project made for Android course in my b.s.c studies(Computer sience) in HIT HOLON.
+A Nice project made for Android course in my b.s.c studies(Computer science) in HIT HOLON.
 
-A Styled puzzle game in android studio , very nice UI desing with animations.
+A Styled puzzle game in android studio , very nice UI design with animations.
 
 You can watch the full app video [Here!](https://www.youtube.com/watch?v=cUmOqlavEpc)
 
-A nice sound aroound all the game with an option to mute in all activities.
+A nice sound around all the game with an option to mute in all activities.
 
 <img src="/homeanimationGIT.gif" width="250" height="400"/>
 
